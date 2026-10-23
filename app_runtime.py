@@ -5,6 +5,40 @@ import subprocess
 import sys
 
 
+def terminate_worker(process, timeout=8):
+    """Stop the interpreter and its children, including Windows venv launchers."""
+    if process.poll() is not None:
+        return
+    if os.name == "nt":
+        # Terminating just Scripts/python.exe can leave its interpreter child
+        # holding CUDA memory and the stdout pipe open indefinitely.
+        try:
+            result = subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=timeout,
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+            if result.returncode == 0:
+                return
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+    try:
+        process.terminate()
+    except OSError:
+        if process.poll() is None:
+            raise
+
+
+def reap_worker(process, timeout=8):
+    """Bound cancellation and escalation rather than leaving a stuck worker."""
+    terminate_worker(process, timeout=timeout)
+    try:
+        process.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        terminate_worker(process, timeout=timeout)
+        if process.poll() is None:
+            process.kill()
+        process.wait(timeout=timeout)
+
+
 def use_app_environment(script):
     app_dir = Path(script).resolve().parent
     environment = app_dir / ".venv"

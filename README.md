@@ -190,7 +190,7 @@ reports. Bring your own model weights and examples.
 
 ## Tested on real hardware
 
-**85 Python tests passed**, alongside Node UI checks and real CPU/CUDA
+**92 Python tests passed**, alongside Node UI checks and real CPU/CUDA
 execution checks. Coverage includes training, GGUF import/export, policy binding,
 streaming chat, cancellation, context budgets, and reasoning.
 
@@ -200,6 +200,7 @@ small execution fixtures from real-model round trips and inference benchmarks.
 
 ```powershell
 python -m unittest discover -s tests -v
+node tests/test_app_ui.js
 node tests/test_chat_ui.js
 ```
 
@@ -218,6 +219,7 @@ Adapter-only exports use their original base; merged GGUF exports are standalone
 | [Chat performance](docs/CHAT-PERFORMANCE.md) | Measured speed improvements and reproducible workload |
 | [GGUF verification](docs/GGUF-TRAINING-VERIFICATION.md) | Real-model training and export checks |
 | [Verification notes](docs/VERIFICATION.md) | Implementation checks and environment records |
+| [Reliability update](docs/RELIABILITY.md) | Error recovery, worker cancellation, and workbench verification |
 | [Third-party notices](THIRD_PARTY_NOTICES.md) | Bundled llama.cpp source and upstream license |
 
 ---

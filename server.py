@@ -30,6 +30,7 @@ import zipfile
 
 from gguf_import import local_gguf_path, clean_import_work
 from chat_service import ChatError, ChatSession
+from app_runtime import reap_worker
 
 VERSION = "0.1.0"
 MAX_BODY = 25 * 1024 * 1024
@@ -174,8 +175,21 @@ class Studio:
         for state_file in self.runs_dir.glob("*/state.json"):
             try:
                 run = json.loads(state_file.read_text(encoding="utf-8"))
-                if not IDENTIFIER.fullmatch(run["id"]):
+                if (not isinstance(run, dict) or not isinstance(run.get("id"), str)
+                        or not IDENTIFIER.fullmatch(run["id"]) or state_file.parent.name != run["id"]
+                        or run.get("status") not in ("queued", "running", "stopping", "stopped", "failed", "completed")
+                        or not isinstance(run.get("created_at"), str) or not isinstance(run.get("config"), dict)):
                     continue
+                # Recover a readable run even if optional UI metadata was cut
+                # short or manually edited; malformed files cannot break startup.
+                run["metrics"] = [item for item in run.get("metrics", []) if isinstance(item, dict)] if isinstance(run.get("metrics"), list) else []
+                run["logs"] = [item for item in run.get("logs", []) if isinstance(item, dict)] if isinstance(run.get("logs"), list) else []
+                if not isinstance(run.get("gguf"), dict):
+                    run["gguf"] = {}
+                if not isinstance(run["gguf"].get("result"), dict):
+                    run["gguf"]["result"] = {}
+                if not isinstance(run["gguf"].get("logs"), list):
+                    run["gguf"]["logs"] = []
                 if run.get("status") in ("queued", "running", "stopping"):
                     run.update(status="failed", ended_at=now(), error="The server was interrupted. This run was not resumed; start a new run.")
                     atomic_json(state_file, run)
@@ -187,7 +201,7 @@ class Studio:
                     run["gguf"].update(status="failed", error="GGUF export was interrupted. Start the export again.")
                     atomic_json(state_file, run)
                 self.runs[run["id"]] = run
-            except (OSError, ValueError, KeyError, TypeError):
+            except (OSError, ValueError, KeyError, TypeError, RecursionError):
                 continue
         self.status = {"version": VERSION,
                        "device": {"name": "Checking local hardware…" if probe else "CPU", "vram_total_gb": 0, "vram_used_gb": 0, "cuda": False},
@@ -237,11 +251,17 @@ class Studio:
             return result
 
     def dataset(self, identifier):
-        if not IDENTIFIER.fullmatch(identifier):
+        if not isinstance(identifier, str) or not IDENTIFIER.fullmatch(identifier):
             raise APIError("Dataset not found.", 404)
         try:
-            return json.loads((self.datasets_dir / f"{identifier}.meta.json").read_text(encoding="utf-8"))
-        except (OSError, ValueError):
+            item = json.loads((self.datasets_dir / f"{identifier}.meta.json").read_text(encoding="utf-8"))
+            if (not isinstance(item, dict) or item.get("id") != identifier
+                    or not isinstance(item.get("name"), str) or not isinstance(item.get("created_at"), str)
+                    or type(item.get("rows")) is not int or item["rows"] < 1
+                    or not (self.datasets_dir / f"{identifier}.jsonl").is_file()):
+                raise ValueError("Dataset metadata or content is incomplete")
+            return item
+        except (OSError, ValueError, RecursionError):
             raise APIError("Dataset not found.", 404)
 
     def list_datasets(self):
@@ -249,8 +269,8 @@ class Studio:
             items = []
             for path in self.datasets_dir.glob("*.meta.json"):
                 try:
-                    items.append(json.loads(path.read_text(encoding="utf-8")))
-                except (OSError, ValueError):
+                    items.append(self.dataset(path.name.removesuffix(".meta.json")))
+                except APIError:
                     continue
             return sorted(items, key=lambda item: item["created_at"], reverse=True)
 
@@ -480,15 +500,11 @@ class Studio:
                 raise APIError("This run is no longer active.", 409)
             run["status"] = "stopping"
             self._save_run(run)
-            try:
-                process.terminate()
-            except OSError:
-                pass
             def reap():
                 try:
-                    process.wait(timeout=8)
-                except subprocess.TimeoutExpired:
-                    process.kill()
+                    reap_worker(process)
+                except (OSError, subprocess.TimeoutExpired):
+                    pass  # The monitor reports the final state when stdout closes.
             threading.Thread(target=reap, daemon=True).start()
             return copy.deepcopy(run)
 
@@ -652,7 +668,12 @@ class Studio:
             run = self.runs[identifier]
             run["gguf"]["status"] = "stopping"
             self._save_run(run)
-            process.terminate()
+            def reap():
+                try:
+                    reap_worker(process)
+                except (OSError, subprocess.TimeoutExpired):
+                    pass
+            threading.Thread(target=reap, daemon=True).start()
             return copy.deepcopy(run)
 
     def gguf_companion(self, identifier):
@@ -685,10 +706,17 @@ class Studio:
     def settings(self, payload=None):
         path = self.data_dir / "settings.json"
         with self.lock:
+            defaults = {"offline": False, "default_model": "", "theme": "light"}
             try:
-                settings = json.loads(path.read_text(encoding="utf-8"))
-            except (OSError, ValueError):
-                settings = {"offline": False, "default_model": "", "theme": "light"}
+                saved = json.loads(path.read_text(encoding="utf-8"))
+                if not isinstance(saved, dict):
+                    saved = {}
+            except (OSError, ValueError, RecursionError):
+                saved = {}
+            settings = {**defaults,
+                **({"offline": saved["offline"]} if type(saved.get("offline")) is bool else {}),
+                **({"default_model": saved["default_model"]} if isinstance(saved.get("default_model"), str) and len(saved["default_model"]) <= 1000 else {}),
+                **({"theme": saved["theme"]} if saved.get("theme") in ("light", "dark", "system") else {})}
             if payload is not None:
                 offline = payload.get("offline", settings.get("offline", False))
                 if not isinstance(offline, bool):
