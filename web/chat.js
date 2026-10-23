@@ -1,6 +1,7 @@
 /* Local model chat. Conversation text never leaves the loopback server. */
 'use strict';
 const chatUi={runId:'',source:'adapter',drafts:{},conversations:{},maxTokens:256,temperature:.7,pending:null,snapshot:{status:'unloaded'},error:'',polling:false,paintKey:''};
+let chatPollTimer=null,chatPollAgain=false;
 try{const saved=JSON.parse(localStorage.getItem('tuna-chat')||'{}');for(const key of ['runId','source','drafts','conversations','maxTokens','temperature','pending'])if(saved[key]!==undefined)chatUi[key]=saved[key];}catch{}
 function chatKey(){return chatUi.runId+':'+chatUi.source;}
 function saveChat(){try{localStorage.setItem('tuna-chat',JSON.stringify({runId:chatUi.runId,source:chatUi.source,drafts:chatUi.drafts,conversations:chatUi.conversations,maxTokens:chatUi.maxTokens,temperature:chatUi.temperature,pending:chatUi.pending}));}catch{}}
@@ -27,12 +28,17 @@ function chatPage(){
  <p class="chat-privacy">${icon('lock')}Stored in this browser. Inference runs locally. Check important answers.</p></section></div>`}`;
 }
 function chatRichText(text){return String(text).split(/```/).map((part,index)=>index%2?`<pre><code>${esc(part.replace(/^[a-zA-Z0-9_+#.-]*\n/,''))}</code></pre>`:`<span>${esc(part)}</span>`).join('');}
-function chatTurn(role,text,pending=false,usage=null){return `<article class="chat-turn ${role}"><div class="chat-turn-label">${role==='user'?'You':`${icon('fish')}Your model`}${pending?'<span class="chat-typing">replying</span>':''}</div><div class="chat-message">${text?chatRichText(text):'<span class="muted">Thinking…</span>'}</div>${usage?`<div class="chat-usage">${fmt(usage.output_tokens)} tokens · ${Number(usage.elapsed_seconds||0).toFixed(1)} s${usage.stopped?' · stopped':''}${usage.limited?' · response limit reached':''}</div>`:''}</article>`;}
+function chatTurn(role,text,pending=false,usage=null){return `<article class="chat-turn ${role}"><div class="chat-turn-label">${role==='user'?'You':`${icon('fish')}Your model`}${pending?'<span class="chat-typing">replying</span>':''}</div><div class="chat-message">${text?chatRichText(text):'<span class="muted">Thinking…</span>'}</div>${usage?`<div class="chat-usage">${fmt(usage.output_tokens)} tokens · ${Number(usage.elapsed_seconds||0).toFixed(1)} s${Number.isFinite(usage.tokens_per_second)&&usage.tokens_per_second>=0?` · ${usage.tokens_per_second.toFixed(1)} tokens/s`:''}${Number.isFinite(usage.time_to_first_token_seconds)&&usage.time_to_first_token_seconds>=0?` · first token ${usage.time_to_first_token_seconds.toFixed(2)} s`:''}${usage.stopped?' · stopped':''}${usage.limited?' · response limit reached':''}</div>`:''}</article>`;}
+function chatRuntimeLabel(s){
+ const labels={transformers:'Transformers',torch:'PyTorch',pytorch:'PyTorch',llama_cpp:'llama.cpp',bf16:'BF16',bfloat16:'BF16',fp16:'FP16',float16:'FP16',nf4:'4-bit NF4',fp32:'FP32',float32:'FP32'};
+ return [s.engine,s.precision,s.optimizations?.includes('Compiled static-cache decode')?'Compiled GPU decode':''].filter(value=>typeof value==='string'&&value.trim()).map(value=>labels[value.toLowerCase()]||value.replace(/_/g,' ')).join(' · ');
+}
 function paintChat(){
  if(state.page!=='chat'||!document.querySelector('#chat-transcript'))return;
  const s=chatUi.snapshot,busy=chatBusy(),current=chatIsCurrent(),ready=current&&s.status==='ready',generating=s.status==='generating';
  const label=current?({unloaded:'Not loaded',loading:'Loading locally…',ready:'Ready to chat',generating:'Replying…',error:'Model needs attention'}[s.status]||'Not loaded'):'Not loaded';
- document.querySelector('#chat-model-state').innerHTML=`<span class="${ready||generating?'ready':''}"><i class="dot"></i>${esc(label)}</span><small>${esc(current?s.message||'':s.status==='ready'?'Another model is loaded. Load this fine-tune to switch.':'Load your fine-tune to start chatting.')}</small>`;
+ const detail=current?[s.message||'',...(['ready','generating'].includes(s.status)?[chatRuntimeLabel(s)]:[])].filter(Boolean).join(' · '):s.status==='ready'?'Another model is loaded. Load this fine-tune to switch.':'Load your fine-tune to start chatting.';
+ document.querySelector('#chat-model-state').innerHTML=`<span class="${ready||generating?'ready':''}"><i class="dot"></i>${esc(label)}</span><small>${esc(detail)}</small>`;
  const load=document.querySelector('#chat-load');load.disabled=busy||ready;load.innerHTML=icon('play')+(ready?'Model loaded':'Load model');
  const unload=document.querySelector('#chat-unload');unload.disabled=s.status==='unloaded';unload.innerHTML=icon('stop')+(s.status==='loading'?'Cancel loading':'Unload');
  for(const id of ['chat-model','chat-source','chat-length','chat-temperature'])document.getElementById(id).disabled=busy;
@@ -50,7 +56,13 @@ function paintChat(){
   if(bottom||pending)transcript.scrollTop=transcript.scrollHeight;chatUi.paintKey=key;
  }
 }
-function chatMount(){chatUi.paintKey='';paintChat();chatPoll();}
+function chatMount(){chatUi.paintKey='';paintChat();scheduleChatPoll(true);}
+function scheduleChatPoll(immediate=false){
+ clearTimeout(chatPollTimer);chatPollTimer=null;
+ if(state.page!=='chat'&&!chatUi.pending)return;
+ if(chatUi.polling){chatPollAgain=chatPollAgain||immediate;return;}
+ chatPollTimer=setTimeout(chatPoll,immediate?0:chatBusy()||chatUi.pending?100:1500);
+}
 function acceptChatSnapshot(s){
  if(s.instance_id===chatUi.snapshot.instance_id&&s.revision<chatUi.snapshot.revision)return;
  chatUi.snapshot=s;
@@ -74,12 +86,12 @@ async function chatPoll(){if(chatUi.polling||(state.page!=='chat'&&!chatUi.pendi
   if(reply){const live=chatUi.snapshot;acceptChatSnapshot({...live,...reply,status:'ready'});chatUi.snapshot=live;paintChat();}
   else if(s.status!=='generating'&&s.status!=='loading'){chatUi.drafts[p.key]=p.user;chatUi.pending=null;chatUi.error='The model session changed. Your message is kept as a draft.';saveChat();paintChat();}
  }
- }catch(error){chatUi.error=error.message;paintChat();}finally{chatUi.polling=false;}}
-async function loadChat(){if(!selectedChatRun())return;chatUi.error='';try{acceptChatSnapshot((await api('/chat/load',{method:'POST',body:JSON.stringify({run_id:chatUi.runId,source:chatUi.source})})).chat);}catch(error){chatUi.error=error.message;paintChat();}}
+ }catch(error){chatUi.error=error.message;paintChat();}finally{chatUi.polling=false;const immediate=chatPollAgain;chatPollAgain=false;scheduleChatPoll(immediate);}}
+async function loadChat(){if(!selectedChatRun())return;chatUi.error='';try{acceptChatSnapshot((await api('/chat/load',{method:'POST',body:JSON.stringify({run_id:chatUi.runId,source:chatUi.source})})).chat);scheduleChatPoll(true);}catch(error){chatUi.error=error.message;paintChat();}}
 async function sendChat(){
  const user=(chatUi.drafts[chatKey()]||'').trim();if(!user||chatUi.pending||!chatIsCurrent()||chatUi.snapshot.status!=='ready')return;
  const key=chatKey(),history=chatUi.conversations[key]||[];chatUi.error='';chatUi.pending={key,user,text:'',requestId:null};chatUi.drafts[key]='';saveChat();document.getElementById('chat-input').value='';paintChat();
- try{const result=await api('/chat/message',{method:'POST',body:JSON.stringify({run_id:chatUi.runId,source:chatUi.source,messages:[...history.map(m=>({role:m.role,content:m.content})),{role:'user',content:user}],max_new_tokens:Number(chatUi.maxTokens),temperature:Number(chatUi.temperature)})});chatUi.pending.requestId=result.chat.request_id;saveChat();acceptChatSnapshot(result.chat);}catch(error){chatUi.drafts[key]=user;chatUi.pending=null;chatUi.error=error.message;saveChat();const input=document.getElementById('chat-input');if(input)input.value=user;paintChat();}
+ try{const result=await api('/chat/message',{method:'POST',body:JSON.stringify({run_id:chatUi.runId,source:chatUi.source,messages:[...history.map(m=>({role:m.role,content:m.content})),{role:'user',content:user}],max_new_tokens:Number(chatUi.maxTokens),temperature:Number(chatUi.temperature)})});chatUi.pending.requestId=result.chat.request_id;saveChat();acceptChatSnapshot(result.chat);scheduleChatPoll(true);}catch(error){chatUi.drafts[key]=user;chatUi.pending=null;chatUi.error=error.message;saveChat();const input=document.getElementById('chat-input');if(input)input.value=user;paintChat();}
 }
 document.addEventListener('click',async event=>{const target=event.target.closest('[data-action]');if(!target)return;const action=target.dataset.action;if(!action.startsWith('chat-'))return;try{
  if(action==='chat-run'){if(chatBusy()||chatUi.pending){toast('Finish or stop the current chat operation first.');return;}const id=target.dataset.id;closeModal();chatUi.runId=id;chatUi.source='adapter';chatUi.error='';saveChat();navigate('chat');await loadChat();}
@@ -93,4 +105,4 @@ document.addEventListener('submit',event=>{if(event.target.id==='chat-form'){eve
 document.addEventListener('input',event=>{if(event.target.id==='chat-input'){chatUi.drafts[chatKey()]=event.target.value;saveChat();paintChat();}});
 document.addEventListener('change',event=>{const id=event.target.id;if(id==='chat-model'||id==='chat-source'){chatUi[id==='chat-model'?'runId':'source']=event.target.value;chatUi.error='';saveChat();render();}if(id==='chat-length'||id==='chat-temperature'){chatUi[id==='chat-length'?'maxTokens':'temperature']=Number(event.target.value);saveChat();}});
 document.addEventListener('keydown',event=>{if(event.target.id==='chat-input'&&event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();sendChat();}});
-setInterval(chatPoll,400);
+scheduleChatPoll(true);
