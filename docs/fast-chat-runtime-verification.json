@@ -1,0 +1,21 @@
+{
+  "precision": "bf16",
+  "policy_bound": true,
+  "optimizations": [
+    "Qwen3.5 single-token convolution (18 layers)",
+    "Qwen3.5 fused linear attention",
+    "Compiled static-cache decode"
+  ],
+  "caller_roles_rejected": true,
+  "reserved_controls_rejected": true,
+  "oversized_context_rejected_without_truncation": true,
+  "fresh_cache_a_b_a_matches": true,
+  "conversation_output_hashes": [
+    "73ab66a033c267e00b7429bb256f6deb2734ebc4cd4ff5b564a8c9f9b2c8a719",
+    "639181fd63cbad6e274ecd205b79f5c3e7c11971cac617ee8bddcac6e79b20e7",
+    "73ab66a033c267e00b7429bb256f6deb2734ebc4cd4ff5b564a8c9f9b2c8a719"
+  ],
+  "compiled_generation_cancels": true,
+  "stop_output_tokens": 7,
+  "worker_ready_after_errors_and_stop": true
+}

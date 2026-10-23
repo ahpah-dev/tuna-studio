@@ -1,0 +1,250 @@
+{
+  "date": "2026-10-23",
+  "model": "Qwen/Qwen3.5-2B",
+  "training_method": "QLoRA",
+  "device": "NVIDIA GeForce RTX 5070",
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.2",
+  "peft": "0.21.2",
+  "triton_windows": "3.8.0.post29",
+  "fla_core": "0.5.2",
+  "prompt": "Write a complete single-file HTML game where a bird avoids pipes. Include HTML, CSS and JavaScript code.",
+  "temperature": 0,
+  "input_tokens": 33,
+  "output_tokens_each_trial": 128,
+  "repeats_per_mode": 3,
+  "median_generation_speedup": 6.599096705466211,
+  "modes": {
+    "baseline": {
+      "precision": "nf4",
+      "iterations": [
+        {
+          "iteration": 1,
+          "wall_seconds": 19.413308099959977,
+          "first_visible_text_seconds": 1.447991400025785,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 18.58125090005342,
+            "tokens_per_second": 6.888664314824575
+          },
+          "finish_reason": "length",
+          "output_sha256": "5be6ca1ce18fda0976c298ef44fb8a4aa699b3d5381e76371d62ea38f1789c81"
+        },
+        {
+          "iteration": 2,
+          "wall_seconds": 15.307525099953637,
+          "first_visible_text_seconds": 0.6789241000078619,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 14.952342199976556,
+            "tokens_per_second": 8.560531740652692
+          },
+          "finish_reason": "length",
+          "output_sha256": "5be6ca1ce18fda0976c298ef44fb8a4aa699b3d5381e76371d62ea38f1789c81"
+        },
+        {
+          "iteration": 3,
+          "wall_seconds": 14.19995270005893,
+          "first_visible_text_seconds": 0.9445320999948308,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 13.741300199995749,
+            "tokens_per_second": 9.314984618416212
+          },
+          "finish_reason": "length",
+          "output_sha256": "5be6ca1ce18fda0976c298ef44fb8a4aa699b3d5381e76371d62ea38f1789c81"
+        }
+      ],
+      "median_tokens_per_second": 8.560531740652692,
+      "median_generation_seconds": 14.952342199976556,
+      "median_wall_seconds": 15.307525099953637
+    },
+    "optimized": {
+      "precision": "bf16",
+      "iterations": [
+        {
+          "iteration": 1,
+          "wall_seconds": 8.595376499928534,
+          "first_visible_text_seconds": 1.552986399969086,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 8.207256799913011,
+            "tokens_per_second": 15.595954058773533,
+            "time_to_first_token_seconds": 0.9790945999557152,
+            "time_to_first_text_seconds": 1.1382035999558866,
+            "decode_tokens_per_second": 17.570164654128863,
+            "peak_allocated_vram_mb": 3682.671875
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 2,
+          "wall_seconds": 7.786400799988769,
+          "first_visible_text_seconds": 0.6252527999458835,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 7.338996100006625,
+            "tokens_per_second": 17.441077533735772,
+            "time_to_first_token_seconds": 0.08687800006009638,
+            "time_to_first_text_seconds": 0.20028440002352,
+            "decode_tokens_per_second": 17.5121251818743,
+            "peak_allocated_vram_mb": 3682.671875
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 3,
+          "wall_seconds": 7.733204899937846,
+          "first_visible_text_seconds": 0.6508130000438541,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 7.329354300047271,
+            "tokens_per_second": 17.464021353037122,
+            "time_to_first_token_seconds": 0.07756970007903874,
+            "time_to_first_text_seconds": 0.20925040007568896,
+            "decode_tokens_per_second": 17.512930541339625,
+            "peak_allocated_vram_mb": 3682.671875
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        }
+      ],
+      "median_tokens_per_second": 17.441077533735772,
+      "median_generation_seconds": 7.338996100006625,
+      "median_wall_seconds": 7.786400799988769
+    },
+    "fused": {
+      "precision": "bf16",
+      "iterations": [
+        {
+          "iteration": 1,
+          "wall_seconds": 7.260059399995953,
+          "first_visible_text_seconds": 0.6704291000496596,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 6.781283300020732,
+            "tokens_per_second": 18.875483346877527,
+            "time_to_first_token_seconds": 0.1221897000214085,
+            "time_to_first_text_seconds": 0.22383419994730502,
+            "decode_tokens_per_second": 19.071664648175677,
+            "peak_allocated_vram_mb": 3676.41259765625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 2,
+          "wall_seconds": 7.199310200056061,
+          "first_visible_text_seconds": 0.6904478999786079,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 6.73208720004186,
+            "tokens_per_second": 19.0134197904038,
+            "time_to_first_token_seconds": 0.07935030001681298,
+            "time_to_first_text_seconds": 0.18162519996985793,
+            "decode_tokens_per_second": 19.089887652031127,
+            "peak_allocated_vram_mb": 3676.41259765625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 3,
+          "wall_seconds": 6.773190899984911,
+          "first_visible_text_seconds": 0.5486320999916643,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 6.404144799918868,
+            "tokens_per_second": 19.987055883187026,
+            "time_to_first_token_seconds": 0.08319859998300672,
+            "time_to_first_text_seconds": 0.18053609994240105,
+            "decode_tokens_per_second": 20.091928642153082,
+            "peak_allocated_vram_mb": 3676.41259765625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        }
+      ],
+      "median_tokens_per_second": 19.0134197904038,
+      "median_generation_seconds": 6.73208720004186,
+      "median_wall_seconds": 7.199310200056061
+    },
+    "compiled": {
+      "precision": "bf16",
+      "optimizations": [
+        "Qwen3.5 single-token convolution (18 layers)",
+        "Qwen3.5 fused linear attention",
+        "Compiled static-cache decode"
+      ],
+      "iterations": [
+        {
+          "iteration": 1,
+          "wall_seconds": 2.690243799937889,
+          "first_visible_text_seconds": 0.6427414999343455,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 2.3291323999874294,
+            "tokens_per_second": 54.95608579430299,
+            "time_to_first_token_seconds": 0.14742930000647902,
+            "time_to_first_text_seconds": 0.23517220001667738,
+            "decode_tokens_per_second": 58.211403742841505,
+            "peak_allocated_vram_mb": 3931.166015625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 2,
+          "wall_seconds": 2.630619600065984,
+          "first_visible_text_seconds": 0.5521784001030028,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 2.2658164999447763,
+            "tokens_per_second": 56.49177680678011,
+            "time_to_first_token_seconds": 0.0709007999394089,
+            "time_to_first_text_seconds": 0.14793259999714792,
+            "decode_tokens_per_second": 57.860992109942735,
+            "peak_allocated_vram_mb": 3931.166015625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        },
+        {
+          "iteration": 3,
+          "wall_seconds": 2.6581244999542832,
+          "first_visible_text_seconds": 0.580581899965182,
+          "usage": {
+            "input_tokens": 33,
+            "output_tokens": 128,
+            "elapsed_seconds": 2.22074519994203,
+            "tokens_per_second": 57.63830988054879,
+            "time_to_first_token_seconds": 0.08086470002308488,
+            "time_to_first_text_seconds": 0.16140470001846552,
+            "decode_tokens_per_second": 59.34910851555053,
+            "peak_allocated_vram_mb": 3931.166015625
+          },
+          "finish_reason": "length",
+          "output_sha256": "9425a996f0fb615490450009c92965ef832bbd3eb15b58d608101b9f791b6ea8"
+        }
+      ],
+      "median_tokens_per_second": 56.49177680678011,
+      "median_generation_seconds": 2.2658164999447763,
+      "median_wall_seconds": 2.6581244999542832
+    }
+  },
+  "scope": "Local before/after inference measurement with the same saved adapter, prompt and output budget. No held-out model-quality or Unsloth comparison. Warm model weights, including GPU clock variability; no model loading time included.",
+  "compiled_outputs_match_bf16_reference": true
+}

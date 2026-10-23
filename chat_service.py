@@ -208,7 +208,8 @@ class ChatSession:
                     if kind == "progress":
                         self.state["message"] = str(event.get("message", "Loading…"))[:500]
                     elif kind == "ready":
-                        self.state.update({key:event.get(key) for key in ("device","quantized","policy_bound","context_tokens")})
+                        self.state.update({key:event.get(key) for key in ("device","quantized","policy_bound","context_tokens",
+                            "engine","precision","adapter_merged","optimizations","allocated_vram_mb")})
                         self.state.update(status="ready",message="Ready to chat.",error=None)
                         self.last_used = time.monotonic()
                     elif kind == "delta" and self.state["status"] == "generating":

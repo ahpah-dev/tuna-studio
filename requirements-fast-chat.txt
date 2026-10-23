@@ -1,0 +1,5 @@
+# Optional Qwen3.5 kernels. Tested with the Torch 2.14 CUDA environment.
+# Base fla-core does not depend on torch/triton; avoid its [cuda] extra on Windows.
+einops==0.8.2
+fla-core==0.5.2
+triton-windows==3.8.0.post29; sys_platform == "win32"

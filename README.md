@@ -85,7 +85,7 @@ direct model or filesystem access can bypass or alter the wrapper.
 
 Validation during implementation:
 
-- **61 unit tests passed**, covering the local server, training core, GGUF import/export, chat policy binding, UTF-8 transport and worker lifecycle.
+- **77 unit tests passed**, covering the local server, training core, GGUF import/export, chat policy binding, UTF-8 transport, worker lifecycle and inference optimizations.
 - A tiny random Llama model and fast tokenizer were created entirely locally.
   **Three real CPU LoRA updates** exercised gradient accumulation and
   checkpointing; saved nonzero adapter weights were reloaded and changed logits.
@@ -122,6 +122,14 @@ conversation history, code formatting, stop/unload controls and idle unloading.
 Tuna is described as **Policy-conditioned QLoRA**; its saved policy is included
 on every chat turn. See [docs/CHAT.md](docs/CHAT.md) for local model requirements
 and memory behavior.
+
+Chat selects faster BF16/FP16 inference when weights fit in GPU memory, merges
+adapters in memory once, and keeps NF4 for larger models. Optional Qwen3.5 fast
+kernels can be installed with `./setup-fast-chat.ps1` after CUDA setup. See
+[chat performance](docs/CHAT-PERFORMANCE.md) for actual measurements and tradeoffs.
+On the measured RTX 5070 / Qwen3.5-2B workload, median generation throughput
+increased from 8.56 to 56.49 tokens/s after preparation. This is a local chat
+before/after result; no Unsloth comparison or training-speed claim is implied.
 
 ## GGUF export
 

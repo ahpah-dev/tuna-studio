@@ -1,0 +1,210 @@
+{
+  "checks": [
+    {
+      "name": "recurrent_bf16_seed_17",
+      "atol": 0.002,
+      "rtol": 0.02,
+      "shape": [
+        1,
+        1,
+        16,
+        128,
+        128
+      ],
+      "call_seconds": 1.1965526000130922,
+      "output": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 0.008213386870920658
+      },
+      "state": {
+        "max_abs_error": 1.1920928955078125e-07,
+        "mean_abs_error": 3.670001857969396e-09,
+        "rms_reference": 0.0869307592511177
+      },
+      "passed": true
+    },
+    {
+      "name": "recurrent_bf16_seed_43",
+      "atol": 0.002,
+      "rtol": 0.02,
+      "shape": [
+        1,
+        1,
+        16,
+        128,
+        128
+      ],
+      "call_seconds": 0.0005036999937146902,
+      "output": {
+        "max_abs_error": 7.62939453125e-06,
+        "mean_abs_error": 3.725290298461914e-09,
+        "rms_reference": 0.007624623831361532
+      },
+      "state": {
+        "max_abs_error": 1.1920928955078125e-07,
+        "mean_abs_error": 3.12313197525782e-09,
+        "rms_reference": 0.08594327419996262
+      },
+      "passed": true
+    },
+    {
+      "name": "recurrent_bf16_seed_90",
+      "atol": 0.002,
+      "rtol": 0.02,
+      "shape": [
+        1,
+        1,
+        16,
+        128,
+        128
+      ],
+      "call_seconds": 0.00034359993878751993,
+      "output": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 0.0073102256283164024
+      },
+      "state": {
+        "max_abs_error": 5.960464477539063e-08,
+        "mean_abs_error": 2.0574220105373797e-09,
+        "rms_reference": 0.08608810603618622
+      },
+      "passed": true
+    },
+    {
+      "name": "chunk_prefill_bf16_17",
+      "atol": 0.004,
+      "rtol": 0.03,
+      "shape": [
+        1,
+        17,
+        16,
+        128,
+        128
+      ],
+      "call_seconds": 56.59991510002874,
+      "output": {
+        "max_abs_error": 0.000244140625,
+        "mean_abs_error": 1.4026546523382422e-05,
+        "rms_reference": 0.005967373959720135
+      },
+      "state": {
+        "max_abs_error": 0.005433440208435059,
+        "mean_abs_error": 0.00012139110185671598,
+        "rms_reference": 0.06769101321697235
+      },
+      "passed": true
+    },
+    {
+      "name": "chunk_prefill_bf16_128",
+      "atol": 0.004,
+      "rtol": 0.03,
+      "shape": [
+        1,
+        128,
+        16,
+        128,
+        128
+      ],
+      "call_seconds": 0.001762600033544004,
+      "output": {
+        "max_abs_error": 0.00048828125,
+        "mean_abs_error": 1.4053309314476792e-05,
+        "rms_reference": 0.005917225498706102
+      },
+      "state": {
+        "max_abs_error": 0.006021857261657715,
+        "mean_abs_error": 0.00014242767065297812,
+        "rms_reference": 0.0792241320014
+      },
+      "passed": true
+    },
+    {
+      "name": "conv_torch.float32",
+      "atol": 2e-06,
+      "rtol": 2e-06,
+      "shape": [
+        1,
+        6144,
+        4
+      ],
+      "cache_address_preserved": true,
+      "output": {
+        "max_abs_error": 7.152557373046875e-07,
+        "mean_abs_error": 3.175077623041034e-08,
+        "rms_reference": 1.289006233215332
+      },
+      "state": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 1.000095009803772
+      },
+      "passed": true
+    },
+    {
+      "name": "conv_torch.float16",
+      "atol": 0.016,
+      "rtol": 0.016,
+      "shape": [
+        1,
+        6144,
+        4
+      ],
+      "cache_address_preserved": true,
+      "output": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 1.3260774612426758
+      },
+      "state": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 0.9981133937835693
+      },
+      "passed": true
+    },
+    {
+      "name": "conv_torch.bfloat16",
+      "atol": 0.016,
+      "rtol": 0.016,
+      "shape": [
+        1,
+        6144,
+        4
+      ],
+      "cache_address_preserved": true,
+      "output": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 1.3639336824417114
+      },
+      "state": {
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "rms_reference": 1.0008732080459595
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "torch": "2.14.1+cu130",
+  "triton": "3.8.0",
+  "fla": "0.5.2",
+  "device": "NVIDIA GeForce RTX 5070",
+  "capability": [
+    12,
+    0
+  ],
+  "selected": {
+    "torch_recurrent_gated_delta_rule": {
+      "fast_selected": true,
+      "implementation": "fla.ops.gated_delta_rule.fused_recurrent.fused_recurrent_gated_delta_rule"
+    },
+    "torch_chunk_gated_delta_rule": {
+      "fast_selected": true,
+      "implementation": "fla.ops.gated_delta_rule.chunk.chunk_gated_delta_rule"
+    }
+  },
+  "peak_allocated_vram_mb": 294.2080078125
+}

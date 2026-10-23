@@ -97,3 +97,13 @@ conversation history and provides stop/unload controls. Real Qwen3.5 adapter
 and Dad GGUF conversations passed, including multi-turn recall and policy
 validation. Model unloading released the app's Windows interpreter process tree.
 The suite now has 61 passing tests. See [the chat report](CHAT-VERIFICATION.md).
+
+## Faster chat inference
+
+The suite now has 77 passing tests. Memory-aware dense inference, in-memory
+adapter merging, optional fused Qwen3.5 kernels and compiled static-cache decode
+passed real RTX 5070 checks. Median Qwen3.5-2B generation improved from 8.56 to
+56.49 tokens/s on the recorded 128-token workload. Real Tuna policy/context
+checks, cache isolation, cancellation and process-tree unloading also passed.
+See [the performance report](CHAT-PERFORMANCE.md) for measurements, setup costs,
+memory tradeoffs and limitations. No Unsloth comparison was performed.
