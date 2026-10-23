@@ -85,7 +85,7 @@ direct model or filesystem access can bypass or alter the wrapper.
 
 Validation during implementation:
 
-- **77 unit tests passed**, covering the local server, training core, GGUF import/export, chat policy binding, UTF-8 transport, worker lifecycle and inference optimizations.
+- **85 unit tests passed**, covering the local server, training core, GGUF import/export, chat policy binding, UTF-8 transport, worker lifecycle, inference optimizations and reasoning/response budgets.
 - A tiny random Llama model and fast tokenizer were created entirely locally.
   **Three real CPU LoRA updates** exercised gradient accumulation and
   checkpointing; saved nonzero adapter weights were reloaded and changed logits.
@@ -119,6 +119,9 @@ do not enable execution of custom repository Python code.
 Choose **Chat** in the sidebar, select a completed run and **Load model**. Or
 open a run and choose **Chat with model**. Chat has streaming replies, saved
 conversation history, code formatting, stop/unload controls and idle unloading.
+Choose **Unlimited** to use the remaining chat context without a fixed reply
+cap. Supported models also have a **Reasoning** switch with a separate,
+collapsible thinking section. Both settings are saved in this browser.
 Tuna is described as **Policy-conditioned QLoRA**; its saved policy is included
 on every chat turn. See [docs/CHAT.md](docs/CHAT.md) for local model requirements
 and memory behavior.

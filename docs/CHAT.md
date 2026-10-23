@@ -47,6 +47,10 @@ Clearing browser data removes stored chat history.
   first be stopped, preventing overlapping heavy operations.
 - Response length and creativity can be changed between turns. Focused mode
   uses greedy generation; other modes sample at the selected temperature.
+- **Unlimited** removes the fixed reply cap and uses all remaining loaded chat
+  context. Generation ends when the model finishes, you press Stop, or the
+  context fills. It is not infinite context. Fixed choices up to 2,048 tokens
+  remain available. A context-limited reply is labeled in the conversation.
 - The context budget is at most 8,192 tokens, including the requested reply,
   and can be lower for small-context models. Oversized conversations are rejected
   instead of truncating the policy. Start a new chat when the budget is reached.
@@ -55,6 +59,55 @@ API routes: `/api/chat`, `/api/chat/load`, `/api/chat/message`, `/api/chat/stop`
 `/api/chat/unload` and `/api/chat/replies/<request-id>`. They use the same loopback
 and origin checks as training. A separate resident `chat_worker.py` handles
 inference; unloading it leaves unrelated GPU apps alone.
+
+## Reasoning
+
+Choose **Reasoning → On · think before answering** to enable the tokenizer's
+native `enable_thinking` mode. The worker checks that the switch actually changes
+the model's prompt. Models without that switch show the control as unavailable;
+requesting it through the API returns an actionable error.
+
+Supported `<think>…</think>` output streams into a separate **Reasoning**
+disclosure. It opens while the model thinks and collapses after completion; the
+final answer appears underneath. The app routes the model's actual output and
+does not manufacture reasoning. Reasoning tokens and answer tokens share the
+selected response budget, so Unlimited is useful for longer reasoning tasks.
+
+Reasoning is stored locally alongside the answer but is not sent back as chat
+history. If you stop before any final answer, the partial reasoning remains
+visible; that unfinished user/assistant pair is omitted from the next model
+request to keep roles valid. Completed answers remain in the normal history.
+The saved Tuna policy is applied in both modes.
+
+If a model repeats itself while thinking, press **Stop reply** and try Balanced
+creativity. Reasoning quality and termination depend on the model; the
+[Qwen3.5-2B model card](https://huggingface.co/Qwen/Qwen3.5-2B) documents its
+susceptibility to thinking loops, including with recommended sampling settings.
+
+API example after a supported model is loaded:
+
+```json
+{
+  "messages": [{"role": "user", "content": "What is 17 times 23?"}],
+  "max_new_tokens": null,
+  "reasoning": true,
+  "temperature": 0.7
+}
+```
+
+`max_new_tokens: null` means Unlimited. Omitting the field retains the 256-token
+default; omitting `reasoning` retains direct-answer mode.
+
+Verified locally on 2026-10-23 with a Qwen3.5-2B QLoRA run on an RTX 5070:
+Unlimited generated 3,403 tokens before an explicit Stop, exceeding the old
+2,048-token cap. A separate sampled reasoning request finished normally with
+173 generated tokens, a separate reasoning section and final answer `4`.
+The available reply budget was 8,168 tokens after its 24-token prompt. All 85
+Python tests and the Node chat UI checks passed, including split delimiters,
+context limits, cancellation, retained replies and unfinished-turn history.
+The browser also completed a sampled reasoning turn after that stopped turn:
+1,059 generated tokens, final answer `4`, a collapsible reasoning section and
+both settings preserved across reload. No browser warnings or errors were logged.
 
 ## Faster inference
 

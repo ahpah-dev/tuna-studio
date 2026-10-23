@@ -28,8 +28,9 @@ def validate_message_request(payload):
         if not isinstance(message, dict) or message.get("role") != ("user" if index % 2 == 0 else "assistant"):
             raise ChatError("Chat messages must alternate user and assistant. Caller system/developer messages are not allowed.")
         content = message.get("content")
-        if not isinstance(content, str) or not content.strip() or len(content) > 20000:
-            raise ChatError("Each message must contain 1–20,000 characters.")
+        limit = 20000 if message["role"] == "user" else 100000
+        if not isinstance(content, str) or not content.strip() or len(content) > limit:
+            raise ChatError(f"Each {message['role']} message must contain 1–{limit:,} characters.")
         size += len(content)
         clean.append({"role": message["role"], "content": content})
     if clean[-1]["role"] != "user":
@@ -37,12 +38,15 @@ def validate_message_request(payload):
     if size > 100000:
         raise ChatError("This conversation is too long. Start a new chat.")
     tokens = payload.get("max_new_tokens", 256)
-    if type(tokens) is not int or not 1 <= tokens <= 2048:
-        raise ChatError("Response length must be between 1 and 2,048 tokens.")
+    if tokens is not None and (type(tokens) is not int or not 1 <= tokens <= 2048):
+        raise ChatError("Response length must be between 1 and 2,048 tokens, or null for Unlimited.")
+    reasoning = payload.get("reasoning",False)
+    if type(reasoning) is not bool:
+        raise ChatError("Reasoning must be true or false.")
     temperature = payload.get("temperature", 0.7)
     if isinstance(temperature, bool) or not isinstance(temperature, (int, float)) or not math.isfinite(temperature) or not 0 <= temperature <= 2:
         raise ChatError("Temperature must be between 0 and 2.")
-    return {"messages": clean, "max_new_tokens": tokens, "temperature": float(temperature)}
+    return {"messages": clean, "max_new_tokens": tokens, "temperature": float(temperature), "reasoning":reasoning}
 
 
 class ChatSession:
@@ -116,7 +120,10 @@ class ChatSession:
             if payload.get("run_id") is not None and (payload["run_id"] != self.state["run_id"] or payload.get("source", "adapter") != self.state["source"]):
                 raise ChatError("The loaded model changed in another chat. Load your selected fine-tune again; your draft is kept.", 409)
             identifier = uuid.uuid4().hex
-            self.state.update(status="generating",request_id=identifier,text="",error=None,
+            if request["reasoning"] and self.state.get("reasoning_supported") is False:
+                raise ChatError("This model does not have a native reasoning switch. Turn Reasoning off or choose a supported model.")
+            self.state.update(status="generating",request_id=identifier,text="",reasoning="",error=None,
+                              reasoning_enabled=request["reasoning"],reasoning_active=request["reasoning"],unlimited=request["max_new_tokens"] is None,
                               usage=None,finish_reason=None,stop_requested=False,message="Your model is replying…")
             self.last_used = time.monotonic()
             self._send({"type":"generate","request_id":identifier,**request})
@@ -134,7 +141,7 @@ class ChatSession:
         identifier = self.state.get("request_id")
         if identifier:
             self.replies[identifier] = {key:copy.deepcopy(self.state.get(key)) for key in
-                ("request_id","run_id","source","text","error","usage","finish_reason")}
+                ("request_id","run_id","source","text","reasoning","reasoning_enabled","unlimited","error","usage","finish_reason")}
             while len(self.replies) > 16:
                 self.replies.pop(next(iter(self.replies)))
 
@@ -209,15 +216,21 @@ class ChatSession:
                         self.state["message"] = str(event.get("message", "Loading…"))[:500]
                     elif kind == "ready":
                         self.state.update({key:event.get(key) for key in ("device","quantized","policy_bound","context_tokens",
-                            "engine","precision","adapter_merged","optimizations","allocated_vram_mb")})
+                            "engine","precision","adapter_merged","optimizations","allocated_vram_mb","reasoning_supported")})
                         self.state.update(status="ready",message="Ready to chat.",error=None)
                         self.last_used = time.monotonic()
                     elif kind == "delta" and self.state["status"] == "generating":
-                        self.state["text"] = (self.state["text"] + str(event.get("text","")))[:100000]
+                        field = "reasoning" if event.get("channel") == "reasoning" else "text"
+                        self.state[field] = self.state.get(field,"") + str(event.get("text",""))
+                    elif kind == "reply_state" and self.state["status"] == "generating":
+                        self.state.update({key:event[key] for key in ("reasoning_active","output_token_limit") if key in event})
                     elif kind in ("reply_complete", "reply_error"):
                         if isinstance(event.get("text"),str):
-                            self.state["text"] = event["text"][:100000]
+                            self.state["text"] = event["text"]
+                        if isinstance(event.get("reasoning"),str):
+                            self.state["reasoning"] = event["reasoning"]
                         self.state.update(status="ready",error=event.get("error"),usage=event.get("usage"),
+                                          reasoning_active=False,
                                           finish_reason=event.get("finish_reason"),stop_requested=False,
                                           message="Ready to chat." if kind == "reply_complete" else "Your message could not be completed.")
                         self._remember_reply()

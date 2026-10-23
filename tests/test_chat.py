@@ -24,8 +24,13 @@ def reply(command):
     emit('delta',request_id=identifier,text='Hello ')
     stop.wait(2 if command['messages'][-1]['content']=='slow' else .08)
     content=command['messages'][-1]['content']
-    emit('reply_complete',request_id=identifier,text='Hello local model' if content in ('Hello','slow') else content,finish_reason='cancelled' if stop.is_set() else 'stop',usage={'output_tokens':3})
-emit('ready',device='Fixture',quantized=True,policy_bound=True,context_tokens=128)
+    thought='Check the question first.' if command.get('reasoning') else ''
+    if thought:
+        emit('delta',request_id=identifier,channel='reasoning',text=thought)
+        emit('reply_state',request_id=identifier,reasoning_active=False,output_token_limit=120)
+    if content=='options': content=json.dumps({'max_new_tokens':command['max_new_tokens'],'reasoning':command['reasoning']})
+    emit('reply_complete',request_id=identifier,text='Hello local model' if content in ('Hello','slow') else content,reasoning=thought,finish_reason='cancelled' if stop.is_set() else 'stop',usage={'output_tokens':3})
+emit('ready',device='Fixture',quantized=True,policy_bound=True,context_tokens=128,reasoning_supported=True)
 for line in sys.stdin:
     command=json.loads(line)
     if command['type']=='generate': threading.Thread(target=reply,args=(command,),daemon=True).start()
@@ -141,6 +146,21 @@ class ChatProcessTests(unittest.TestCase):
         self.assertEqual(self.api('/chat/stop',{})[0],200)
         self.assertEqual(self.wait('ready')['finish_reason'],'cancelled')
         self.assertEqual(self.api('/chat/stop',{})[0],409)
+
+    def test_unlimited_and_reasoning_reach_worker_and_retained_reply(self):
+        self.assertTrue(self.load()['reasoning_supported'])
+        status,body=self.api('/chat/message',{'messages':[{'role':'user','content':'options'}],'max_new_tokens':None,'reasoning':True})
+        self.assertEqual(status,202)
+        self.assertTrue(body['chat']['unlimited'])
+        reply=self.wait('ready')
+        self.assertEqual(json.loads(reply['text']),{'max_new_tokens':None,'reasoning':True})
+        self.assertEqual(reply['reasoning'],'Check the question first.')
+        self.assertFalse(reply['reasoning_active'])
+        retained=self.api('/chat/replies/'+reply['request_id'])[1]['reply']
+        self.assertEqual(retained['reasoning'],reply['reasoning'])
+        self.assertTrue(retained['reasoning_enabled'])
+        self.studio.chat.state['reasoning_supported']=False
+        self.assertEqual(self.api('/chat/message',{'messages':USER,'reasoning':True})[0],400)
 
     def test_unicode_round_trip_and_monotonic_snapshots(self):
         before=self.load()

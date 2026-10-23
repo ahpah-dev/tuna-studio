@@ -13,6 +13,7 @@ import time
 from chat_service import validate_message_request
 from tuna_core import prepare_inference_messages, reserved_control_tokens
 from inference_loading import checkpoint_size, choose_precision
+from chat_options import ReasoningSplitter, response_budget, reasoning_supported, finish_reason
 
 PRINT_LOCK = threading.Lock()
 
@@ -187,6 +188,7 @@ def load_model(args):
          policy_bound=manifest is not None,context_tokens=context,engine="transformers",precision=precision,
          adapter_merged=bool(adapter_path and precision!="nf4"),optimizations=optimizations,
          compiled=compiled,
+         reasoning_supported=reasoning_supported(tokenizer,prepare_messages([{"role":"user","content":"Hello."}],manifest)),
          allocated_vram_mb=torch.cuda.memory_allocated()/1048576 if cuda else None)
     return model,tokenizer,manifest,context
 
@@ -214,13 +216,22 @@ def main():
 
     def generate(command):
         identifier = command["request_id"]
-        chunks,ended = [],False
+        chunks,thoughts,ended = [],[],False
+        blocked_controls = set()
+        splitter = ReasoningSplitter()
         first_token,first_text,start = None,None,None
         class Stream(TextStreamer):
             def put(self,value):
                 nonlocal first_token
                 if not (self.skip_prompt and self.next_tokens_are_prompt) and first_token is None:
                     first_token = time.perf_counter()-start
+                if blocked_controls and not self.next_tokens_are_prompt:
+                    ids = value.reshape(-1).tolist()
+                    kept = [token for token in ids if token not in blocked_controls]
+                    if not kept:
+                        return
+                    if len(kept) != len(ids):
+                        value = torch.tensor(kept,dtype=value.dtype)
                 super().put(value)
             def on_finalized_text(self,text,stream_end=False):
                 nonlocal ended,first_text
@@ -228,24 +239,37 @@ def main():
                 if text:
                     if first_text is None:
                         first_text = time.perf_counter()-start
-                    chunks.append(text)
-                    emit("delta",request_id=identifier,text=text)
-        streamer = Stream(tokenizer,skip_prompt=True,skip_special_tokens=True)
+                    self.route(splitter.feed(text))
+                if stream_end:
+                    self.route(splitter.finish())
+                emit("reply_state",request_id=identifier,reasoning_active=splitter.in_reasoning)
+            def route(self,pieces):
+                for channel,text in pieces:
+                    (thoughts if channel=="reasoning" else chunks).append(text)
+                    emit("delta",request_id=identifier,channel=channel,text=text)
+        streamer = Stream(tokenizer,skip_prompt=True,skip_special_tokens=command.get("reasoning") is not True)
         final = {}
         try:
             request = validate_message_request(command)
             prepared = prepare_messages(request["messages"],manifest)
+            if request["reasoning"] and not reasoning_supported(tokenizer,prepared):
+                raise ValueError("This model does not have a native reasoning switch. Turn Reasoning off or choose a supported model.")
+            if request["reasoning"]:
+                vocab = tokenizer.get_vocab()
+                blocked_controls = {vocab[token] for token in reserved_control_tokens(tokenizer)
+                    if token in vocab and token not in ("<think>","</think>")}
             if manifest:
                 controls = reserved_control_tokens(tokenizer)
                 for message in prepared[1:]:
                     if any(token in message["content"] for token in controls):
                         raise ValueError("Message contains reserved model control tokens. The saved Tuna policy is kept separate from chat text.")
-            prompt = tokenizer.apply_chat_template(prepared,tokenize=False,add_generation_prompt=True,enable_thinking=False)
+            prompt = tokenizer.apply_chat_template(prepared,tokenize=False,add_generation_prompt=True,enable_thinking=request["reasoning"])
+            splitter = ReasoningSplitter(request["reasoning"],prompt)
             encoded = tokenizer(prompt,return_tensors="pt",add_special_tokens=False,return_token_type_ids=False).to(model.device)
             prompt_tokens = encoded["input_ids"].shape[1]
-            if prompt_tokens + request["max_new_tokens"] > context:
-                raise ValueError(f"This conversation exceeds the {context:,}-token chat budget. Start a new chat or shorten your message; the saved policy will not be truncated.")
-            settings = {"max_new_tokens":request["max_new_tokens"],"do_sample":request["temperature"]>0,
+            budget = response_budget(request["max_new_tokens"],prompt_tokens,context)
+            emit("reply_state",request_id=identifier,reasoning_active=splitter.in_reasoning,output_token_limit=budget)
+            settings = {"max_new_tokens":budget,"do_sample":request["temperature"]>0,
                 "streamer":streamer,"stopping_criteria":StoppingCriteriaList([CancelCriteria()]),
                 "pad_token_id":tokenizer.pad_token_id,"use_cache":True}
             eos = end_token_ids(model,tokenizer)
@@ -263,9 +287,11 @@ def main():
                 torch.cuda.synchronize()
             duration = time.perf_counter() - start
             count = int(output.shape[1] - prompt_tokens)
-            final = {"type":"reply_complete","request_id":identifier,"text":"".join(chunks),
-                "finish_reason":"cancelled" if cancel.is_set() else "length" if count>=request["max_new_tokens"] else "stop",
+            final = {"type":"reply_complete","request_id":identifier,"text":"".join(chunks),"reasoning":"".join(thoughts),
+                "finish_reason":finish_reason(cancel.is_set(),count,budget,request["max_new_tokens"] is None,int(output[0,-1]),eos),
                 "usage":{"input_tokens":prompt_tokens,"output_tokens":count,"elapsed_seconds":duration,
+                         "unlimited":request["max_new_tokens"] is None,"output_token_limit":budget,
+                         "reasoning_enabled":request["reasoning"],"reasoning_incomplete":request["reasoning"] and splitter.in_reasoning,
                          "tokens_per_second":count/max(duration,0.001),
                          "time_to_first_token_seconds":first_token,"time_to_first_text_seconds":first_text,
                          "decode_tokens_per_second":(count-1)/max(duration-first_token,0.001) if first_token is not None and count>1 else None,
@@ -275,7 +301,7 @@ def main():
             if not ended:
                 streamer.end()
             error = "Not enough GPU memory. Try a shorter conversation or unload other models." if isinstance(exc,torch.cuda.OutOfMemoryError) else str(exc)
-            final = {"type":"reply_error","request_id":identifier,"text":"".join(chunks),"error":error,"finish_reason":"error"}
+            final = {"type":"reply_error","request_id":identifier,"text":"".join(chunks),"reasoning":"".join(thoughts),"error":error,"finish_reason":"error"}
         finally:
             active.clear()
             kind = final.pop("type")
