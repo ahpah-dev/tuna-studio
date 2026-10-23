@@ -1,0 +1,9 @@
+{
+  "run_id": "901593c2a7924f399dcf9d5c947c3f77",
+  "examples": 9,
+  "supervised_tokens": 7431,
+  "source_nf4_target_loss": 0.7043560788330168,
+  "tuned_nf4_target_loss": 0.5721309820498132,
+  "relative_loss_reduction_percent": 18.772478971470694,
+  "scope": "Same nine training examples, scored without dropout on the same NF4 restored GGUF base with adapters disabled/enabled. Shows learning on the training set; not held-out quality or proof of unoverrideable behavior."
+}

@@ -1,0 +1,137 @@
+{
+  "run_id": "08a69b6c46844a199fc30bb71e4db1cc",
+  "format": "Q8_0",
+  "checked_matrices": 21,
+  "all_match": true,
+  "all_differ_from_untuned_base": true,
+  "elapsed_seconds": 8.777537200017832,
+  "checks": [
+    {
+      "tensor": "blk.0.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3263160,
+      "changed_bytes_vs_base_gguf": 1444095
+    },
+    {
+      "tensor": "blk.0.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 365887,
+      "changed_bytes_vs_base_gguf": 106650
+    },
+    {
+      "tensor": "blk.0.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 223001,
+      "changed_bytes_vs_base_gguf": 36986
+    },
+    {
+      "tensor": "blk.0.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 2088894,
+      "changed_bytes_vs_base_gguf": 457693
+    },
+    {
+      "tensor": "blk.0.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 4298331,
+      "changed_bytes_vs_base_gguf": 588744
+    },
+    {
+      "tensor": "blk.0.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3460931,
+      "changed_bytes_vs_base_gguf": 381420
+    },
+    {
+      "tensor": "blk.0.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 2367657,
+      "changed_bytes_vs_base_gguf": 160225
+    },
+    {
+      "tensor": "blk.21.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 1261029,
+      "changed_bytes_vs_base_gguf": 151200
+    },
+    {
+      "tensor": "blk.21.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 105864,
+      "changed_bytes_vs_base_gguf": 8009
+    },
+    {
+      "tensor": "blk.21.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 169638,
+      "changed_bytes_vs_base_gguf": 19969
+    },
+    {
+      "tensor": "blk.21.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 1174089,
+      "changed_bytes_vs_base_gguf": 135521
+    },
+    {
+      "tensor": "blk.21.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3916139,
+      "changed_bytes_vs_base_gguf": 454755
+    },
+    {
+      "tensor": "blk.21.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3518193,
+      "changed_bytes_vs_base_gguf": 361570
+    },
+    {
+      "tensor": "blk.21.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 2290250,
+      "changed_bytes_vs_base_gguf": 151879
+    },
+    {
+      "tensor": "blk.41.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 1401167,
+      "changed_bytes_vs_base_gguf": 177093
+    },
+    {
+      "tensor": "blk.41.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 170525,
+      "changed_bytes_vs_base_gguf": 19818
+    },
+    {
+      "tensor": "blk.41.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 99369,
+      "changed_bytes_vs_base_gguf": 6721
+    },
+    {
+      "tensor": "blk.41.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 1026117,
+      "changed_bytes_vs_base_gguf": 95059
+    },
+    {
+      "tensor": "blk.41.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3935328,
+      "changed_bytes_vs_base_gguf": 472646
+    },
+    {
+      "tensor": "blk.41.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3541759,
+      "changed_bytes_vs_base_gguf": 369992
+    },
+    {
+      "tensor": "blk.41.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 2041349,
+      "changed_bytes_vs_base_gguf": 115289
+    }
+  ],
+  "scope": "Checks first, middle, and final layers. Byte equality includes Q/K RoPE permutation and Q8_0 quantization. Does not measure held-out behavior."
+}

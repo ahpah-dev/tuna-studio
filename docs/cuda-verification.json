@@ -1,0 +1,31 @@
+{
+  "device": "NVIDIA GeForce RTX 5070",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "runs": [
+    {
+      "method": "qlora",
+      "status": "completed",
+      "steps": 3,
+      "loss": 2.9578719615936278,
+      "peak_vram_mb": 65.021484375,
+      "elapsed_seconds": 2.4907695000292733,
+      "tokens_per_second": 12.847435300465946,
+      "adapter_nonzero": true,
+      "zip_verified": true
+    },
+    {
+      "method": "tuna",
+      "status": "completed",
+      "steps": 3,
+      "loss": 2.923744869232178,
+      "peak_vram_mb": 65.09326171875,
+      "elapsed_seconds": 3.9967684999573976,
+      "tokens_per_second": 14.261521526855402,
+      "adapter_nonzero": true,
+      "zip_verified": true
+    }
+  ],
+  "tuna_inference_and_system_rejection": "passed",
+  "scope": "Tiny random model validates execution, not model quality or Unsloth performance."
+}

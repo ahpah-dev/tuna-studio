@@ -1,0 +1,12 @@
+{
+  "run_id": "08a69b6c46844a199fc30bb71e4db1cc",
+  "source": "gguf",
+  "policy_bound": true,
+  "actual_stop_finish_reason": "cancelled",
+  "actual_stop_output_tokens": 1,
+  "caller_system_and_developer_rejected": true,
+  "reserved_control_tokens_rejected": true,
+  "oversized_context_rejected_without_truncating_policy": true,
+  "completed_replies_retained_by_request_id": true,
+  "worker_remains_ready_after_request_errors": true
+}

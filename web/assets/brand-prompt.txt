@@ -1,0 +1,20 @@
+Tuna Studio logo
+Mode: built-in image_gen tool
+Transparent background: true
+
+Initial generation prompt:
+Use case: logo-brand
+Asset type: app brand mark for Tuna Studio, a premium local-first AI fine-tuning dashboard
+Primary request: a simple, clean, friendly, rounded teal tuna fish mark. Horizontal fish body facing right, small dark eye, little tail. Expressive but not childish.
+Style/medium: vector-like flat minimal design, roughly two clean colored shapes plus a tiny dark eye, crisp smooth edges, no texture, no shading
+Composition/framing: isolated single fish centered on a square canvas, large readable silhouette with compact proportions and comfortable transparent margins
+Color palette: rich teal fish, subtle light turquoise accent if needed, very dark teal eye. Should look crisp on cream or white dashboards.
+Scene/backdrop: genuinely transparent background
+Constraints: no text, no letters, no surrounding objects, no border, no watermark, no gradient, no 3D, no drop shadow. One final logo mark only.
+
+Final edit prompt:
+Use case: precise-object-edit
+Asset type: Tuna Studio brand mark
+Primary request: simplify this fish into a truly flat, minimal premium app logo. Replace every gradient and shaded area with uniform solid fill: teal #19B4A5 body, light mint #C6F2E4 lower belly, dark #124D4A dot eye. Preserve the friendly rounded silhouette, fish facing right, overall proportions, and transparent background. Remove inner fin and the white eye highlight to reduce detail. Keep crisp smooth boundaries. No texture, no shading, no shadow, no text, no watermark, no surrounding objects.
+
+Final workspace asset: web/assets/tuna-mark.png

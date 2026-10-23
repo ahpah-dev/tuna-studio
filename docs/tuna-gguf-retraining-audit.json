@@ -1,0 +1,1775 @@
+{
+  "run_id": "901593c2a7924f399dcf9d5c947c3f77",
+  "format": "Q8_0",
+  "checked_matrices": 294,
+  "all_match": true,
+  "elapsed_seconds": 95.89727119996678,
+  "checks": [
+    {
+      "tensor": "blk.0.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 4055727,
+      "changed_bytes_vs_base_gguf": 1181179
+    },
+    {
+      "tensor": "blk.0.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 496845,
+      "changed_bytes_vs_base_gguf": 73763
+    },
+    {
+      "tensor": "blk.0.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 467612,
+      "changed_bytes_vs_base_gguf": 12103
+    },
+    {
+      "tensor": "blk.0.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3820282,
+      "changed_bytes_vs_base_gguf": 138626
+    },
+    {
+      "tensor": "blk.0.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10763325,
+      "changed_bytes_vs_base_gguf": 255816
+    },
+    {
+      "tensor": "blk.0.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10231839,
+      "changed_bytes_vs_base_gguf": 220980
+    },
+    {
+      "tensor": "blk.0.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9179959,
+      "changed_bytes_vs_base_gguf": 111559
+    },
+    {
+      "tensor": "blk.1.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3489824,
+      "changed_bytes_vs_base_gguf": 78472
+    },
+    {
+      "tensor": "blk.1.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 375283,
+      "changed_bytes_vs_base_gguf": 3916
+    },
+    {
+      "tensor": "blk.1.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 478390,
+      "changed_bytes_vs_base_gguf": 14426
+    },
+    {
+      "tensor": "blk.1.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3578893,
+      "changed_bytes_vs_base_gguf": 76518
+    },
+    {
+      "tensor": "blk.1.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10425916,
+      "changed_bytes_vs_base_gguf": 205301
+    },
+    {
+      "tensor": "blk.1.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10377726,
+      "changed_bytes_vs_base_gguf": 203767
+    },
+    {
+      "tensor": "blk.1.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8848367,
+      "changed_bytes_vs_base_gguf": 101718
+    },
+    {
+      "tensor": "blk.2.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3469306,
+      "changed_bytes_vs_base_gguf": 75249
+    },
+    {
+      "tensor": "blk.2.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 374279,
+      "changed_bytes_vs_base_gguf": 4266
+    },
+    {
+      "tensor": "blk.2.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 452884,
+      "changed_bytes_vs_base_gguf": 9535
+    },
+    {
+      "tensor": "blk.2.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3549380,
+      "changed_bytes_vs_base_gguf": 73971
+    },
+    {
+      "tensor": "blk.2.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10437347,
+      "changed_bytes_vs_base_gguf": 205806
+    },
+    {
+      "tensor": "blk.2.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10400147,
+      "changed_bytes_vs_base_gguf": 204929
+    },
+    {
+      "tensor": "blk.2.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9132562,
+      "changed_bytes_vs_base_gguf": 110977
+    },
+    {
+      "tensor": "blk.3.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3441741,
+      "changed_bytes_vs_base_gguf": 68313
+    },
+    {
+      "tensor": "blk.3.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 367294,
+      "changed_bytes_vs_base_gguf": 3780
+    },
+    {
+      "tensor": "blk.3.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 446867,
+      "changed_bytes_vs_base_gguf": 9129
+    },
+    {
+      "tensor": "blk.3.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3541881,
+      "changed_bytes_vs_base_gguf": 73526
+    },
+    {
+      "tensor": "blk.3.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10382341,
+      "changed_bytes_vs_base_gguf": 204249
+    },
+    {
+      "tensor": "blk.3.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10395534,
+      "changed_bytes_vs_base_gguf": 204972
+    },
+    {
+      "tensor": "blk.3.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9131531,
+      "changed_bytes_vs_base_gguf": 112384
+    },
+    {
+      "tensor": "blk.4.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3552281,
+      "changed_bytes_vs_base_gguf": 76791
+    },
+    {
+      "tensor": "blk.4.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 392284,
+      "changed_bytes_vs_base_gguf": 5473
+    },
+    {
+      "tensor": "blk.4.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 437997,
+      "changed_bytes_vs_base_gguf": 8916
+    },
+    {
+      "tensor": "blk.4.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3522993,
+      "changed_bytes_vs_base_gguf": 73960
+    },
+    {
+      "tensor": "blk.4.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10348641,
+      "changed_bytes_vs_base_gguf": 200241
+    },
+    {
+      "tensor": "blk.4.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10448707,
+      "changed_bytes_vs_base_gguf": 207713
+    },
+    {
+      "tensor": "blk.4.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9173723,
+      "changed_bytes_vs_base_gguf": 111800
+    },
+    {
+      "tensor": "blk.5.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3474808,
+      "changed_bytes_vs_base_gguf": 71104
+    },
+    {
+      "tensor": "blk.5.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 384766,
+      "changed_bytes_vs_base_gguf": 4524
+    },
+    {
+      "tensor": "blk.5.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 450357,
+      "changed_bytes_vs_base_gguf": 10052
+    },
+    {
+      "tensor": "blk.5.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3530758,
+      "changed_bytes_vs_base_gguf": 74451
+    },
+    {
+      "tensor": "blk.5.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10417561,
+      "changed_bytes_vs_base_gguf": 204250
+    },
+    {
+      "tensor": "blk.5.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10447092,
+      "changed_bytes_vs_base_gguf": 206033
+    },
+    {
+      "tensor": "blk.5.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9159130,
+      "changed_bytes_vs_base_gguf": 110848
+    },
+    {
+      "tensor": "blk.6.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3437804,
+      "changed_bytes_vs_base_gguf": 67211
+    },
+    {
+      "tensor": "blk.6.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 380917,
+      "changed_bytes_vs_base_gguf": 4491
+    },
+    {
+      "tensor": "blk.6.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 445451,
+      "changed_bytes_vs_base_gguf": 9217
+    },
+    {
+      "tensor": "blk.6.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3516625,
+      "changed_bytes_vs_base_gguf": 74679
+    },
+    {
+      "tensor": "blk.6.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10421154,
+      "changed_bytes_vs_base_gguf": 204689
+    },
+    {
+      "tensor": "blk.6.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10444749,
+      "changed_bytes_vs_base_gguf": 206886
+    },
+    {
+      "tensor": "blk.6.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9157386,
+      "changed_bytes_vs_base_gguf": 110821
+    },
+    {
+      "tensor": "blk.7.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3368150,
+      "changed_bytes_vs_base_gguf": 61356
+    },
+    {
+      "tensor": "blk.7.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 386848,
+      "changed_bytes_vs_base_gguf": 4642
+    },
+    {
+      "tensor": "blk.7.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 457538,
+      "changed_bytes_vs_base_gguf": 9196
+    },
+    {
+      "tensor": "blk.7.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3548357,
+      "changed_bytes_vs_base_gguf": 76258
+    },
+    {
+      "tensor": "blk.7.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10387560,
+      "changed_bytes_vs_base_gguf": 204515
+    },
+    {
+      "tensor": "blk.7.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10405245,
+      "changed_bytes_vs_base_gguf": 204316
+    },
+    {
+      "tensor": "blk.7.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8577894,
+      "changed_bytes_vs_base_gguf": 95310
+    },
+    {
+      "tensor": "blk.8.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3447242,
+      "changed_bytes_vs_base_gguf": 66888
+    },
+    {
+      "tensor": "blk.8.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 399402,
+      "changed_bytes_vs_base_gguf": 5462
+    },
+    {
+      "tensor": "blk.8.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 452435,
+      "changed_bytes_vs_base_gguf": 9932
+    },
+    {
+      "tensor": "blk.8.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3544950,
+      "changed_bytes_vs_base_gguf": 75620
+    },
+    {
+      "tensor": "blk.8.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10386476,
+      "changed_bytes_vs_base_gguf": 202641
+    },
+    {
+      "tensor": "blk.8.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10400481,
+      "changed_bytes_vs_base_gguf": 204272
+    },
+    {
+      "tensor": "blk.8.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9178218,
+      "changed_bytes_vs_base_gguf": 113772
+    },
+    {
+      "tensor": "blk.9.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3476130,
+      "changed_bytes_vs_base_gguf": 69457
+    },
+    {
+      "tensor": "blk.9.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 390476,
+      "changed_bytes_vs_base_gguf": 5218
+    },
+    {
+      "tensor": "blk.9.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 441494,
+      "changed_bytes_vs_base_gguf": 8641
+    },
+    {
+      "tensor": "blk.9.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3500943,
+      "changed_bytes_vs_base_gguf": 73453
+    },
+    {
+      "tensor": "blk.9.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10413420,
+      "changed_bytes_vs_base_gguf": 205093
+    },
+    {
+      "tensor": "blk.9.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10378390,
+      "changed_bytes_vs_base_gguf": 203206
+    },
+    {
+      "tensor": "blk.9.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9152883,
+      "changed_bytes_vs_base_gguf": 115121
+    },
+    {
+      "tensor": "blk.10.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3537151,
+      "changed_bytes_vs_base_gguf": 77909
+    },
+    {
+      "tensor": "blk.10.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 407243,
+      "changed_bytes_vs_base_gguf": 6182
+    },
+    {
+      "tensor": "blk.10.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 449789,
+      "changed_bytes_vs_base_gguf": 9754
+    },
+    {
+      "tensor": "blk.10.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3495713,
+      "changed_bytes_vs_base_gguf": 73566
+    },
+    {
+      "tensor": "blk.10.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10469621,
+      "changed_bytes_vs_base_gguf": 208595
+    },
+    {
+      "tensor": "blk.10.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10348569,
+      "changed_bytes_vs_base_gguf": 201020
+    },
+    {
+      "tensor": "blk.10.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9161672,
+      "changed_bytes_vs_base_gguf": 115123
+    },
+    {
+      "tensor": "blk.11.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3482480,
+      "changed_bytes_vs_base_gguf": 71901
+    },
+    {
+      "tensor": "blk.11.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 400683,
+      "changed_bytes_vs_base_gguf": 5845
+    },
+    {
+      "tensor": "blk.11.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 445634,
+      "changed_bytes_vs_base_gguf": 9201
+    },
+    {
+      "tensor": "blk.11.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3478725,
+      "changed_bytes_vs_base_gguf": 75017
+    },
+    {
+      "tensor": "blk.11.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10511384,
+      "changed_bytes_vs_base_gguf": 209773
+    },
+    {
+      "tensor": "blk.11.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10320653,
+      "changed_bytes_vs_base_gguf": 199016
+    },
+    {
+      "tensor": "blk.11.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9142060,
+      "changed_bytes_vs_base_gguf": 114446
+    },
+    {
+      "tensor": "blk.12.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3475964,
+      "changed_bytes_vs_base_gguf": 70038
+    },
+    {
+      "tensor": "blk.12.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 398966,
+      "changed_bytes_vs_base_gguf": 5655
+    },
+    {
+      "tensor": "blk.12.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 440613,
+      "changed_bytes_vs_base_gguf": 8962
+    },
+    {
+      "tensor": "blk.12.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3485799,
+      "changed_bytes_vs_base_gguf": 74563
+    },
+    {
+      "tensor": "blk.12.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10526704,
+      "changed_bytes_vs_base_gguf": 210852
+    },
+    {
+      "tensor": "blk.12.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10280636,
+      "changed_bytes_vs_base_gguf": 195133
+    },
+    {
+      "tensor": "blk.12.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9115614,
+      "changed_bytes_vs_base_gguf": 112019
+    },
+    {
+      "tensor": "blk.13.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3497689,
+      "changed_bytes_vs_base_gguf": 72388
+    },
+    {
+      "tensor": "blk.13.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 404836,
+      "changed_bytes_vs_base_gguf": 6350
+    },
+    {
+      "tensor": "blk.13.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 454133,
+      "changed_bytes_vs_base_gguf": 9732
+    },
+    {
+      "tensor": "blk.13.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3485857,
+      "changed_bytes_vs_base_gguf": 77978
+    },
+    {
+      "tensor": "blk.13.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10539410,
+      "changed_bytes_vs_base_gguf": 209776
+    },
+    {
+      "tensor": "blk.13.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10269396,
+      "changed_bytes_vs_base_gguf": 192687
+    },
+    {
+      "tensor": "blk.13.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9108544,
+      "changed_bytes_vs_base_gguf": 109491
+    },
+    {
+      "tensor": "blk.14.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3500400,
+      "changed_bytes_vs_base_gguf": 75722
+    },
+    {
+      "tensor": "blk.14.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 394270,
+      "changed_bytes_vs_base_gguf": 5322
+    },
+    {
+      "tensor": "blk.14.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 444464,
+      "changed_bytes_vs_base_gguf": 9151
+    },
+    {
+      "tensor": "blk.14.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3469317,
+      "changed_bytes_vs_base_gguf": 76075
+    },
+    {
+      "tensor": "blk.14.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10522966,
+      "changed_bytes_vs_base_gguf": 210726
+    },
+    {
+      "tensor": "blk.14.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10195840,
+      "changed_bytes_vs_base_gguf": 188481
+    },
+    {
+      "tensor": "blk.14.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9082479,
+      "changed_bytes_vs_base_gguf": 109598
+    },
+    {
+      "tensor": "blk.15.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3581592,
+      "changed_bytes_vs_base_gguf": 91222
+    },
+    {
+      "tensor": "blk.15.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 414812,
+      "changed_bytes_vs_base_gguf": 7219
+    },
+    {
+      "tensor": "blk.15.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 442261,
+      "changed_bytes_vs_base_gguf": 9120
+    },
+    {
+      "tensor": "blk.15.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3471991,
+      "changed_bytes_vs_base_gguf": 74551
+    },
+    {
+      "tensor": "blk.15.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10544339,
+      "changed_bytes_vs_base_gguf": 210616
+    },
+    {
+      "tensor": "blk.15.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10209046,
+      "changed_bytes_vs_base_gguf": 188577
+    },
+    {
+      "tensor": "blk.15.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9079333,
+      "changed_bytes_vs_base_gguf": 107438
+    },
+    {
+      "tensor": "blk.16.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3482916,
+      "changed_bytes_vs_base_gguf": 70923
+    },
+    {
+      "tensor": "blk.16.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 401140,
+      "changed_bytes_vs_base_gguf": 6029
+    },
+    {
+      "tensor": "blk.16.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 439316,
+      "changed_bytes_vs_base_gguf": 8605
+    },
+    {
+      "tensor": "blk.16.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3419715,
+      "changed_bytes_vs_base_gguf": 73191
+    },
+    {
+      "tensor": "blk.16.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10556155,
+      "changed_bytes_vs_base_gguf": 211831
+    },
+    {
+      "tensor": "blk.16.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10251811,
+      "changed_bytes_vs_base_gguf": 192934
+    },
+    {
+      "tensor": "blk.16.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9039874,
+      "changed_bytes_vs_base_gguf": 109282
+    },
+    {
+      "tensor": "blk.17.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3498470,
+      "changed_bytes_vs_base_gguf": 76801
+    },
+    {
+      "tensor": "blk.17.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 403924,
+      "changed_bytes_vs_base_gguf": 6269
+    },
+    {
+      "tensor": "blk.17.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 443096,
+      "changed_bytes_vs_base_gguf": 8990
+    },
+    {
+      "tensor": "blk.17.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3494518,
+      "changed_bytes_vs_base_gguf": 78681
+    },
+    {
+      "tensor": "blk.17.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10530596,
+      "changed_bytes_vs_base_gguf": 212382
+    },
+    {
+      "tensor": "blk.17.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10249926,
+      "changed_bytes_vs_base_gguf": 193971
+    },
+    {
+      "tensor": "blk.17.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9043889,
+      "changed_bytes_vs_base_gguf": 111063
+    },
+    {
+      "tensor": "blk.18.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3435486,
+      "changed_bytes_vs_base_gguf": 65775
+    },
+    {
+      "tensor": "blk.18.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 406537,
+      "changed_bytes_vs_base_gguf": 6163
+    },
+    {
+      "tensor": "blk.18.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 439978,
+      "changed_bytes_vs_base_gguf": 8439
+    },
+    {
+      "tensor": "blk.18.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3436975,
+      "changed_bytes_vs_base_gguf": 71642
+    },
+    {
+      "tensor": "blk.18.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10496288,
+      "changed_bytes_vs_base_gguf": 209236
+    },
+    {
+      "tensor": "blk.18.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10290901,
+      "changed_bytes_vs_base_gguf": 197011
+    },
+    {
+      "tensor": "blk.18.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9062120,
+      "changed_bytes_vs_base_gguf": 113401
+    },
+    {
+      "tensor": "blk.19.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3471143,
+      "changed_bytes_vs_base_gguf": 68948
+    },
+    {
+      "tensor": "blk.19.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 410863,
+      "changed_bytes_vs_base_gguf": 6571
+    },
+    {
+      "tensor": "blk.19.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 440825,
+      "changed_bytes_vs_base_gguf": 8819
+    },
+    {
+      "tensor": "blk.19.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3434748,
+      "changed_bytes_vs_base_gguf": 75007
+    },
+    {
+      "tensor": "blk.19.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10502045,
+      "changed_bytes_vs_base_gguf": 208196
+    },
+    {
+      "tensor": "blk.19.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10281194,
+      "changed_bytes_vs_base_gguf": 196422
+    },
+    {
+      "tensor": "blk.19.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9111858,
+      "changed_bytes_vs_base_gguf": 116925
+    },
+    {
+      "tensor": "blk.20.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3422156,
+      "changed_bytes_vs_base_gguf": 65412
+    },
+    {
+      "tensor": "blk.20.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 403337,
+      "changed_bytes_vs_base_gguf": 6045
+    },
+    {
+      "tensor": "blk.20.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 446759,
+      "changed_bytes_vs_base_gguf": 9211
+    },
+    {
+      "tensor": "blk.20.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3450465,
+      "changed_bytes_vs_base_gguf": 75073
+    },
+    {
+      "tensor": "blk.20.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10560779,
+      "changed_bytes_vs_base_gguf": 211979
+    },
+    {
+      "tensor": "blk.20.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10283243,
+      "changed_bytes_vs_base_gguf": 195214
+    },
+    {
+      "tensor": "blk.20.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9103160,
+      "changed_bytes_vs_base_gguf": 113047
+    },
+    {
+      "tensor": "blk.21.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3461839,
+      "changed_bytes_vs_base_gguf": 69317
+    },
+    {
+      "tensor": "blk.21.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 394303,
+      "changed_bytes_vs_base_gguf": 5346
+    },
+    {
+      "tensor": "blk.21.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 443558,
+      "changed_bytes_vs_base_gguf": 8946
+    },
+    {
+      "tensor": "blk.21.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3416082,
+      "changed_bytes_vs_base_gguf": 70377
+    },
+    {
+      "tensor": "blk.21.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10539702,
+      "changed_bytes_vs_base_gguf": 210682
+    },
+    {
+      "tensor": "blk.21.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10293506,
+      "changed_bytes_vs_base_gguf": 194112
+    },
+    {
+      "tensor": "blk.21.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9017214,
+      "changed_bytes_vs_base_gguf": 107738
+    },
+    {
+      "tensor": "blk.22.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3487300,
+      "changed_bytes_vs_base_gguf": 73340
+    },
+    {
+      "tensor": "blk.22.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 408654,
+      "changed_bytes_vs_base_gguf": 6702
+    },
+    {
+      "tensor": "blk.22.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 439321,
+      "changed_bytes_vs_base_gguf": 8612
+    },
+    {
+      "tensor": "blk.22.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3412340,
+      "changed_bytes_vs_base_gguf": 67796
+    },
+    {
+      "tensor": "blk.22.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10553805,
+      "changed_bytes_vs_base_gguf": 213119
+    },
+    {
+      "tensor": "blk.22.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10271638,
+      "changed_bytes_vs_base_gguf": 192832
+    },
+    {
+      "tensor": "blk.22.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9028688,
+      "changed_bytes_vs_base_gguf": 108433
+    },
+    {
+      "tensor": "blk.23.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3512763,
+      "changed_bytes_vs_base_gguf": 76578
+    },
+    {
+      "tensor": "blk.23.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 396583,
+      "changed_bytes_vs_base_gguf": 5566
+    },
+    {
+      "tensor": "blk.23.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 427259,
+      "changed_bytes_vs_base_gguf": 8231
+    },
+    {
+      "tensor": "blk.23.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3443883,
+      "changed_bytes_vs_base_gguf": 70627
+    },
+    {
+      "tensor": "blk.23.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10524148,
+      "changed_bytes_vs_base_gguf": 211035
+    },
+    {
+      "tensor": "blk.23.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10290241,
+      "changed_bytes_vs_base_gguf": 193635
+    },
+    {
+      "tensor": "blk.23.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8987554,
+      "changed_bytes_vs_base_gguf": 105675
+    },
+    {
+      "tensor": "blk.24.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3456004,
+      "changed_bytes_vs_base_gguf": 72006
+    },
+    {
+      "tensor": "blk.24.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 401314,
+      "changed_bytes_vs_base_gguf": 5910
+    },
+    {
+      "tensor": "blk.24.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 429396,
+      "changed_bytes_vs_base_gguf": 8398
+    },
+    {
+      "tensor": "blk.24.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3480645,
+      "changed_bytes_vs_base_gguf": 74395
+    },
+    {
+      "tensor": "blk.24.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10533255,
+      "changed_bytes_vs_base_gguf": 210506
+    },
+    {
+      "tensor": "blk.24.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10317095,
+      "changed_bytes_vs_base_gguf": 196416
+    },
+    {
+      "tensor": "blk.24.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8999319,
+      "changed_bytes_vs_base_gguf": 108197
+    },
+    {
+      "tensor": "blk.25.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3518972,
+      "changed_bytes_vs_base_gguf": 79005
+    },
+    {
+      "tensor": "blk.25.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 411459,
+      "changed_bytes_vs_base_gguf": 6670
+    },
+    {
+      "tensor": "blk.25.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 416420,
+      "changed_bytes_vs_base_gguf": 6861
+    },
+    {
+      "tensor": "blk.25.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3437121,
+      "changed_bytes_vs_base_gguf": 70710
+    },
+    {
+      "tensor": "blk.25.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10500581,
+      "changed_bytes_vs_base_gguf": 208437
+    },
+    {
+      "tensor": "blk.25.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10314604,
+      "changed_bytes_vs_base_gguf": 195608
+    },
+    {
+      "tensor": "blk.25.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8966442,
+      "changed_bytes_vs_base_gguf": 105602
+    },
+    {
+      "tensor": "blk.26.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3507159,
+      "changed_bytes_vs_base_gguf": 78224
+    },
+    {
+      "tensor": "blk.26.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 409193,
+      "changed_bytes_vs_base_gguf": 6672
+    },
+    {
+      "tensor": "blk.26.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 417220,
+      "changed_bytes_vs_base_gguf": 6815
+    },
+    {
+      "tensor": "blk.26.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3408960,
+      "changed_bytes_vs_base_gguf": 67543
+    },
+    {
+      "tensor": "blk.26.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10487221,
+      "changed_bytes_vs_base_gguf": 215392
+    },
+    {
+      "tensor": "blk.26.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10325143,
+      "changed_bytes_vs_base_gguf": 194965
+    },
+    {
+      "tensor": "blk.26.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 9028870,
+      "changed_bytes_vs_base_gguf": 106285
+    },
+    {
+      "tensor": "blk.27.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3414343,
+      "changed_bytes_vs_base_gguf": 66976
+    },
+    {
+      "tensor": "blk.27.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 399483,
+      "changed_bytes_vs_base_gguf": 5686
+    },
+    {
+      "tensor": "blk.27.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 426192,
+      "changed_bytes_vs_base_gguf": 6367
+    },
+    {
+      "tensor": "blk.27.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3457018,
+      "changed_bytes_vs_base_gguf": 69287
+    },
+    {
+      "tensor": "blk.27.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10425111,
+      "changed_bytes_vs_base_gguf": 202002
+    },
+    {
+      "tensor": "blk.27.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10353401,
+      "changed_bytes_vs_base_gguf": 199845
+    },
+    {
+      "tensor": "blk.27.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8991195,
+      "changed_bytes_vs_base_gguf": 106614
+    },
+    {
+      "tensor": "blk.28.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3508682,
+      "changed_bytes_vs_base_gguf": 73263
+    },
+    {
+      "tensor": "blk.28.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 417693,
+      "changed_bytes_vs_base_gguf": 7303
+    },
+    {
+      "tensor": "blk.28.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 408822,
+      "changed_bytes_vs_base_gguf": 5452
+    },
+    {
+      "tensor": "blk.28.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3411841,
+      "changed_bytes_vs_base_gguf": 65660
+    },
+    {
+      "tensor": "blk.28.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10457607,
+      "changed_bytes_vs_base_gguf": 208096
+    },
+    {
+      "tensor": "blk.28.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10358111,
+      "changed_bytes_vs_base_gguf": 198654
+    },
+    {
+      "tensor": "blk.28.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8946063,
+      "changed_bytes_vs_base_gguf": 104100
+    },
+    {
+      "tensor": "blk.29.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3460963,
+      "changed_bytes_vs_base_gguf": 68148
+    },
+    {
+      "tensor": "blk.29.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 418319,
+      "changed_bytes_vs_base_gguf": 7366
+    },
+    {
+      "tensor": "blk.29.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 440943,
+      "changed_bytes_vs_base_gguf": 6481
+    },
+    {
+      "tensor": "blk.29.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3480447,
+      "changed_bytes_vs_base_gguf": 70228
+    },
+    {
+      "tensor": "blk.29.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10364241,
+      "changed_bytes_vs_base_gguf": 199632
+    },
+    {
+      "tensor": "blk.29.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10363553,
+      "changed_bytes_vs_base_gguf": 201114
+    },
+    {
+      "tensor": "blk.29.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8959594,
+      "changed_bytes_vs_base_gguf": 106473
+    },
+    {
+      "tensor": "blk.30.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3428009,
+      "changed_bytes_vs_base_gguf": 66727
+    },
+    {
+      "tensor": "blk.30.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 410551,
+      "changed_bytes_vs_base_gguf": 6499
+    },
+    {
+      "tensor": "blk.30.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 427052,
+      "changed_bytes_vs_base_gguf": 6362
+    },
+    {
+      "tensor": "blk.30.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3483385,
+      "changed_bytes_vs_base_gguf": 70486
+    },
+    {
+      "tensor": "blk.30.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10362441,
+      "changed_bytes_vs_base_gguf": 201737
+    },
+    {
+      "tensor": "blk.30.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10374793,
+      "changed_bytes_vs_base_gguf": 202078
+    },
+    {
+      "tensor": "blk.30.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8963492,
+      "changed_bytes_vs_base_gguf": 106930
+    },
+    {
+      "tensor": "blk.31.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3415856,
+      "changed_bytes_vs_base_gguf": 63346
+    },
+    {
+      "tensor": "blk.31.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 414365,
+      "changed_bytes_vs_base_gguf": 6585
+    },
+    {
+      "tensor": "blk.31.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 429144,
+      "changed_bytes_vs_base_gguf": 6307
+    },
+    {
+      "tensor": "blk.31.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3478197,
+      "changed_bytes_vs_base_gguf": 70179
+    },
+    {
+      "tensor": "blk.31.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10349728,
+      "changed_bytes_vs_base_gguf": 200588
+    },
+    {
+      "tensor": "blk.31.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10379758,
+      "changed_bytes_vs_base_gguf": 203792
+    },
+    {
+      "tensor": "blk.31.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8972400,
+      "changed_bytes_vs_base_gguf": 108863
+    },
+    {
+      "tensor": "blk.32.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3463075,
+      "changed_bytes_vs_base_gguf": 68827
+    },
+    {
+      "tensor": "blk.32.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 421513,
+      "changed_bytes_vs_base_gguf": 6798
+    },
+    {
+      "tensor": "blk.32.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 417137,
+      "changed_bytes_vs_base_gguf": 5806
+    },
+    {
+      "tensor": "blk.32.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3453467,
+      "changed_bytes_vs_base_gguf": 68285
+    },
+    {
+      "tensor": "blk.32.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10326377,
+      "changed_bytes_vs_base_gguf": 199916
+    },
+    {
+      "tensor": "blk.32.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10378984,
+      "changed_bytes_vs_base_gguf": 204305
+    },
+    {
+      "tensor": "blk.32.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8949151,
+      "changed_bytes_vs_base_gguf": 109630
+    },
+    {
+      "tensor": "blk.33.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3453234,
+      "changed_bytes_vs_base_gguf": 65352
+    },
+    {
+      "tensor": "blk.33.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 421389,
+      "changed_bytes_vs_base_gguf": 7210
+    },
+    {
+      "tensor": "blk.33.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 416890,
+      "changed_bytes_vs_base_gguf": 5905
+    },
+    {
+      "tensor": "blk.33.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3427228,
+      "changed_bytes_vs_base_gguf": 67621
+    },
+    {
+      "tensor": "blk.33.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10303342,
+      "changed_bytes_vs_base_gguf": 199872
+    },
+    {
+      "tensor": "blk.33.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10359116,
+      "changed_bytes_vs_base_gguf": 204029
+    },
+    {
+      "tensor": "blk.33.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8925467,
+      "changed_bytes_vs_base_gguf": 108735
+    },
+    {
+      "tensor": "blk.34.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3472372,
+      "changed_bytes_vs_base_gguf": 70374
+    },
+    {
+      "tensor": "blk.34.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 414458,
+      "changed_bytes_vs_base_gguf": 6565
+    },
+    {
+      "tensor": "blk.34.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 403428,
+      "changed_bytes_vs_base_gguf": 5723
+    },
+    {
+      "tensor": "blk.34.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3465949,
+      "changed_bytes_vs_base_gguf": 69556
+    },
+    {
+      "tensor": "blk.34.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10319311,
+      "changed_bytes_vs_base_gguf": 201279
+    },
+    {
+      "tensor": "blk.34.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10353450,
+      "changed_bytes_vs_base_gguf": 203304
+    },
+    {
+      "tensor": "blk.34.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8879685,
+      "changed_bytes_vs_base_gguf": 107902
+    },
+    {
+      "tensor": "blk.35.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3482994,
+      "changed_bytes_vs_base_gguf": 68830
+    },
+    {
+      "tensor": "blk.35.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 429511,
+      "changed_bytes_vs_base_gguf": 7742
+    },
+    {
+      "tensor": "blk.35.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 408707,
+      "changed_bytes_vs_base_gguf": 5218
+    },
+    {
+      "tensor": "blk.35.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3420692,
+      "changed_bytes_vs_base_gguf": 66595
+    },
+    {
+      "tensor": "blk.35.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10330022,
+      "changed_bytes_vs_base_gguf": 201584
+    },
+    {
+      "tensor": "blk.35.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10358902,
+      "changed_bytes_vs_base_gguf": 203759
+    },
+    {
+      "tensor": "blk.35.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8905337,
+      "changed_bytes_vs_base_gguf": 108411
+    },
+    {
+      "tensor": "blk.36.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3457809,
+      "changed_bytes_vs_base_gguf": 67190
+    },
+    {
+      "tensor": "blk.36.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 423825,
+      "changed_bytes_vs_base_gguf": 6720
+    },
+    {
+      "tensor": "blk.36.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 410956,
+      "changed_bytes_vs_base_gguf": 5250
+    },
+    {
+      "tensor": "blk.36.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3401563,
+      "changed_bytes_vs_base_gguf": 65684
+    },
+    {
+      "tensor": "blk.36.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10327777,
+      "changed_bytes_vs_base_gguf": 201264
+    },
+    {
+      "tensor": "blk.36.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10351458,
+      "changed_bytes_vs_base_gguf": 204330
+    },
+    {
+      "tensor": "blk.36.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8885842,
+      "changed_bytes_vs_base_gguf": 108261
+    },
+    {
+      "tensor": "blk.37.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3464413,
+      "changed_bytes_vs_base_gguf": 67765
+    },
+    {
+      "tensor": "blk.37.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 431251,
+      "changed_bytes_vs_base_gguf": 8005
+    },
+    {
+      "tensor": "blk.37.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 401675,
+      "changed_bytes_vs_base_gguf": 4374
+    },
+    {
+      "tensor": "blk.37.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3379302,
+      "changed_bytes_vs_base_gguf": 62863
+    },
+    {
+      "tensor": "blk.37.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10332469,
+      "changed_bytes_vs_base_gguf": 201056
+    },
+    {
+      "tensor": "blk.37.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10361408,
+      "changed_bytes_vs_base_gguf": 203737
+    },
+    {
+      "tensor": "blk.37.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8890339,
+      "changed_bytes_vs_base_gguf": 106522
+    },
+    {
+      "tensor": "blk.38.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3490205,
+      "changed_bytes_vs_base_gguf": 69736
+    },
+    {
+      "tensor": "blk.38.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 430437,
+      "changed_bytes_vs_base_gguf": 8367
+    },
+    {
+      "tensor": "blk.38.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 394181,
+      "changed_bytes_vs_base_gguf": 4042
+    },
+    {
+      "tensor": "blk.38.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3331486,
+      "changed_bytes_vs_base_gguf": 59930
+    },
+    {
+      "tensor": "blk.38.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10387534,
+      "changed_bytes_vs_base_gguf": 203317
+    },
+    {
+      "tensor": "blk.38.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10362115,
+      "changed_bytes_vs_base_gguf": 203811
+    },
+    {
+      "tensor": "blk.38.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8854101,
+      "changed_bytes_vs_base_gguf": 104490
+    },
+    {
+      "tensor": "blk.39.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3519112,
+      "changed_bytes_vs_base_gguf": 72261
+    },
+    {
+      "tensor": "blk.39.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 436469,
+      "changed_bytes_vs_base_gguf": 8271
+    },
+    {
+      "tensor": "blk.39.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 398611,
+      "changed_bytes_vs_base_gguf": 4328
+    },
+    {
+      "tensor": "blk.39.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3336653,
+      "changed_bytes_vs_base_gguf": 59470
+    },
+    {
+      "tensor": "blk.39.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10446599,
+      "changed_bytes_vs_base_gguf": 206349
+    },
+    {
+      "tensor": "blk.39.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10368319,
+      "changed_bytes_vs_base_gguf": 204004
+    },
+    {
+      "tensor": "blk.39.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8800146,
+      "changed_bytes_vs_base_gguf": 102479
+    },
+    {
+      "tensor": "blk.40.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3495462,
+      "changed_bytes_vs_base_gguf": 73779
+    },
+    {
+      "tensor": "blk.40.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 420423,
+      "changed_bytes_vs_base_gguf": 6595
+    },
+    {
+      "tensor": "blk.40.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 391173,
+      "changed_bytes_vs_base_gguf": 4844
+    },
+    {
+      "tensor": "blk.40.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3382756,
+      "changed_bytes_vs_base_gguf": 63753
+    },
+    {
+      "tensor": "blk.40.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10489259,
+      "changed_bytes_vs_base_gguf": 207872
+    },
+    {
+      "tensor": "blk.40.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10335563,
+      "changed_bytes_vs_base_gguf": 200941
+    },
+    {
+      "tensor": "blk.40.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8653073,
+      "changed_bytes_vs_base_gguf": 94662
+    },
+    {
+      "tensor": "blk.41.attn_q.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3569803,
+      "changed_bytes_vs_base_gguf": 74773
+    },
+    {
+      "tensor": "blk.41.attn_k.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 444021,
+      "changed_bytes_vs_base_gguf": 8694
+    },
+    {
+      "tensor": "blk.41.attn_v.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 383180,
+      "changed_bytes_vs_base_gguf": 4404
+    },
+    {
+      "tensor": "blk.41.attn_output.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 3318455,
+      "changed_bytes_vs_base_gguf": 58624
+    },
+    {
+      "tensor": "blk.41.ffn_gate.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10561127,
+      "changed_bytes_vs_base_gguf": 213438
+    },
+    {
+      "tensor": "blk.41.ffn_up.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 10325342,
+      "changed_bytes_vs_base_gguf": 198266
+    },
+    {
+      "tensor": "blk.41.ffn_down.weight",
+      "matches_merged_weights": true,
+      "changed_weights_before_quantization": 8670172,
+      "changed_bytes_vs_base_gguf": 92527
+    }
+  ],
+  "scope": "All adapted matrices. Byte equality includes Q/K RoPE permutation and Q8_0 quantization. Does not measure held-out behavior.",
+  "all_differ_from_training_base": true
+}

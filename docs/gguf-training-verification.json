@@ -1,0 +1,32 @@
+{
+  "run_id": "03b010b587334061817ec4c011e2caa2",
+  "source": "Q8_0 GGUF",
+  "method": "Tuna NF4 QLoRA on CUDA",
+  "steps": 20,
+  "base_target_loss": 11.755828857421875,
+  "tuned_target_loss": 10.558881759643555,
+  "learning_improved": true,
+  "adapter_verification": {
+    "lora_b_matrices": 7,
+    "nonzero_lora_b_matrices": 7,
+    "learned_updates_present": true
+  },
+  "gguf_matrices_matched": 7,
+  "native_llama_cpp_exit": 0,
+  "output_path": "gguf-tuna-validation.Q8_0.gguf",
+  "export": {
+    "filename": "gguf-tuna-validation.Q8_0.gguf",
+    "format": "q8_0",
+    "size_bytes": 22919360,
+    "sha256": "0c982f1edfce160c66fc4e3d84ec7af4fd018813536cf24eb1b385b124cd486f",
+    "tensor_count": 12,
+    "architecture": "llama",
+    "merged_weights": 7,
+    "converter_commit": "970b51ce7c9ba5fff0726c5e9994f1c2f0e4eedc",
+    "adapter_sha256": "a94b926dbbbe8cddcf4daddba9c9aff56e5b884948aea506ef76c7db485c6bb6",
+    "source_gguf_sha256": "63919d492f70f2831307151a2ea432d963fb010642ecbef46c578bb65e845548",
+    "modelfile_has_system_prompt": true,
+    "elapsed_seconds": 21.96143469994422
+  },
+  "scope": "Isolated small random Llama validates data flow, learning on its training examples, exact adapter merge and native GGUF loading. Not a held-out quality evaluation."
+}

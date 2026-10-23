@@ -1,0 +1,44 @@
+# Local application state: datasets, prompts, runs, chat work and exports.
+/data/
+/models/
+/exports/
+
+# Python environments and generated files.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Credentials and machine-local configuration.
+.env
+.env.*
+!.env.example
+.one/
+.onerc*
+*.pem
+*.key
+*.log
+
+# Model weights, checkpoints and local datasets belong outside source control.
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.jsonl
+
+# Editor and operating-system state.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

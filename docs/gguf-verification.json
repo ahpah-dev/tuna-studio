@@ -1,0 +1,12 @@
+{
+  "format": "Q8_0",
+  "size_bytes": 2679710624,
+  "tensor_count": 381,
+  "merged_weights": 294,
+  "sha256": "6702be4a0ce9498b9d02b5110327c3554e1cb54dec856038309bc92300630d65",
+  "native_llama_cpp_version": "0.7.0-dev / b11669 / 620d2225c",
+  "native_load_and_single_token_inference": "passed; exit code 0",
+  "download_and_companion_checks": "passed",
+  "app_tests": 44,
+  "scope": "Execution and format validation; model quality was not evaluated."
+}

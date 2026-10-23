@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/ggml-org/llama.cpp",
+  "commit": "970b51ce7c9ba5fff0726c5e9994f1c2f0e4eedc",
+  "license": "MIT",
+  "included": ["convert_hf_to_gguf.py", "conversion", "gguf-py/gguf"],
+  "note": "Unmodified upstream conversion sources; license included. Native inference binaries are not bundled."
+}

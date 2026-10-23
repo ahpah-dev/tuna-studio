@@ -1,0 +1,10 @@
+# Install a CUDA-compatible PyTorch build for your driver first:
+# https://pytorch.org/get-started/locally/
+torch>=2.6,<3
+transformers>=5.20,<6
+peft>=0.15,<1
+accelerate>=1.2,<2
+bitsandbytes>=0.45.5,<1
+safetensors>=0.5,<1
+gguf>=0.19,<1
+-r requirements-export.txt

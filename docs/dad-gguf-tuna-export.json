@@ -1,0 +1,18 @@
+{
+  "run_id": "901593c2a7924f399dcf9d5c947c3f77",
+  "native_llama_cpp_exit": 0,
+  "gguf_sha256": "36acb21b98817ebdeff54c57c25bf0116aa57c696c3a023df480b0c5640ab64c",
+  "copy_verified": true,
+  "download_headers_verified": true,
+  "companion_files": [
+    "Modelfile",
+    "system-prompt.txt",
+    "policy.json",
+    "README.txt",
+    "export_manifest.json"
+  ],
+  "exact_policy_preserved": true,
+  "scratch_cleaned": true,
+  "output_path": "dad-gguf-tuna.Q8_0.gguf",
+  "size_bytes": 2679710368
+}
